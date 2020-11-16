@@ -2,16 +2,22 @@ import * as School from "./School"
 import * as Teacher from "./Teacher"
 import * as Student from "./Student"
 
-type Xs = Student.Student[] | Teacher.Teacher[]
+type Xs = Student.Student[] | Teacher.Teacher[] | School.School[]
 
 function createElement(elementType: string) {
   return document.createElement(elementType)
 }
 
-const grabElement = (element: string) => document.querySelector(element)
-
 const subjectIterate = (xs: string[]) => {
   return xs.map(item => `<span class="item ${item}">${item}</span>`).join(",")
+}
+const teachersIterate = (xs: Teacher.Teacher[]) => {
+  return xs
+    .map(
+      item =>
+        `<span class="item ${item.firstName}"> FirstName: ${item.firstName} LastName: ${item.lastName}</span>`
+    )
+    .join(",")
 }
 
 const renderList = (list: Xs): HTMLUListElement => {
@@ -22,13 +28,18 @@ const renderList = (list: Xs): HTMLUListElement => {
   for (let item of xs) {
     if ("name" in item) {
       listElement.innerHTML += ` <li> ${item.name} ${item.age}  ${
-        item.school ? item.school.name : ""
+        item.school ? item.school.schoolName : ""
       } </li>`
     }
     if ("firstName" in item) {
       listElement.innerHTML += ` <li> ${item.firstName} ${
         item.age
       } ${subjectIterate(item.subject)}   </li> `
+    }
+    if ("schoolName" in item) {
+      listElement.innerHTML += ` <li> ${item.schoolName} ${
+        item.year
+      } ${teachersIterate(item.teachers)} </li> `
     }
   }
   return listElement
@@ -51,6 +62,9 @@ function main(): HTMLDivElement {
   mike.addSubject("math")
   mike.addSubject("english")
 
+  greg.addSubject("math")
+  greg.addSubject("english")
+
   const backa = new School.School("Backa school", 1892)
   const brunnsbo = new School.School("Brunnsbo school", 1975)
 
@@ -68,7 +82,8 @@ function main(): HTMLDivElement {
   klara.addSchool(brunnsbo)
 
   const studentsList = [ron, lina, klara]
-  const teacherList = [bob, tina, mike]
+  const teacherList = [bob, tina, mike, greg]
+  const schoolList = [brunnsbo, backa]
 
   const headingStudents = createElement("h3") as HTMLHeadingElement
   headingStudents.innerText = "Students"
@@ -76,11 +91,17 @@ function main(): HTMLDivElement {
   const headingTeachers = createElement("h3") as HTMLHeadingElement
   headingTeachers.innerText = "Teachers"
 
+  const headingSchool = createElement("h3") as HTMLHeadingElement
+  headingSchool.innerText = "Schools"
+
   element.appendChild(headingStudents)
   element.appendChild(renderList(studentsList))
 
   element.appendChild(headingTeachers)
   element.appendChild(renderList(teacherList))
+
+  element.appendChild(headingSchool)
+  element.appendChild(renderList(schoolList))
 
   return element
 }
