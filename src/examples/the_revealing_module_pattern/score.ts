@@ -1,7 +1,7 @@
 export const game = (() => {
   let score = 0
-  let scoreContainer = document.createElement("div") as HTMLDivElement
 
+  // private
   const updateScore = (newScore: number) => {
     score = newScore
     const countTracker = document.getElementById(
@@ -31,7 +31,6 @@ export const game = (() => {
   return {
     score,
     increment,
-    updateScore,
     getScore,
     startGame,
     decrement,

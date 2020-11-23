@@ -1,11 +1,11 @@
-# design systems in JS/TS
+# design principles in JS/TS
 
 ## Table of Contents
 
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Tools](#tools)
-- [Module-Pattern](#tools)
+- [Module-Pattern](#module-pattern)
 
 ## About <a name = "about"></a>
 
@@ -23,7 +23,15 @@ How does the _new_ keyword works and how _this_ keyword is used when working wit
 
 ```
 
-Have fun !✌🏻
+to run the code in the browser simply run
+
+```bash
+  $ npm run build-run
+```
+
+and refresh the page
+
+Have fun !✌🏻ƛ🤩
 
 ## What is the `new` keyword doing for us when constructing a new object?
 
@@ -58,6 +66,68 @@ Luckily javascript has something that calls `dunder proto` which then will go an
 [\_\_proto\_\_ vs prototype](https://stackoverflow.com/questions/9959727/proto-vs-prototype-in-javascript)
 
 If you want to get deeper on how `OOP` works in _Javascript_ I highly recommend to read [Kyle Simpsons](https://github.com/getify/You-Dont-Know-JS)
+
+## Module pattern <a name = "module-pattern"></a>
+
+Javascript does not have the typical 'private' and 'public' like the more popular OOP language like `java` ore `C#`. However, you can achieve the same effect using clojure's in javascript and `module pattern` using function-level scoping.
+The Module pattern is a powerful tool to use to achieve the result that we want to hide or data(`data hiding`) layer like we do in `java` or `c#`.
+
+The main goal is to hide all data until we really need to use the data.
+
+To avoid exposing your top-level function to the global scope we wrap our function inside a `IFFE` **immediately-invoked function expression.**
+
+Here is the score example:
+
+```ts
+export const game = (() => {
+  let score = 0
+
+  // Private
+  const updateScore = (newScore: number) => {
+    score = newScore
+    const countTracker = document.getElementById(
+      "count-tracker"
+    ) as HTMLHeadingElement
+    countTracker.innerHTML = ` <span>${score}</span> `
+  }
+
+  const increment = () => {
+    updateScore(score + 1)
+  }
+  const decrement = () => {
+    updateScore(score - 1)
+  }
+
+  const getScore = () => {
+    console.log(score)
+    return score
+  }
+
+  const newGame = () => updateScore(0)
+
+  const startGame = () => {
+    newGame()
+  }
+
+  // This will be a private method
+  const somePrivateFunc = () => {
+    console.log("SCORE", score)
+  }
+
+  /* Variables and functions that we would like to expose */
+  return {
+    score,
+    increment,
+    getScore,
+    startGame,
+    decrement,
+    newGame,
+  }
+})()
+```
+
+we will keep our methods `public` ore `private` depending on how we want the structure/functionality to be.
+For example the methods that gets return from the function will work as `public` methods while methods that are not return will work as a `private method`
 
 ## Tools <a name = "tools"></a>
 
