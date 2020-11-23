@@ -1,7 +1,7 @@
 // import * as School from "./School"
 // import * as Teacher from "./Teacher"
 // import * as Student from "./Student"
-import { game } from "./examples/the_revealing_module_pattern/score"
+import { game } from "./patterns/the_revealing_module_pattern/score"
 
 // type Xs = Student.Student[] | Teacher.Teacher[] | School.School[]
 
