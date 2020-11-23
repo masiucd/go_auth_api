@@ -1,10 +1,11 @@
-# school-data
+# design systems in JS/TS
 
 ## Table of Contents
 
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Tools](#tools)
+- [Module-Pattern](#tools)
 
 ## About <a name = "about"></a>
 
