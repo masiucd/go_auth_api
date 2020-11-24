@@ -4,7 +4,7 @@ interface TodoItem {
   completed: boolean
 }
 
-class TodoList {
+export class TodoList {
   todos: TodoItem[] = []
   constructor() {
     this.todos = [

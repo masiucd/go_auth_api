@@ -1,7 +1,10 @@
 // import * as School from "./School"
 // import * as Teacher from "./Teacher"
 // import * as Student from "./Student"
-import { game } from "./patterns/the_revealing_module_pattern/score"
+
+import { TodoView } from "./patterns/mvc/views/todo-view"
+
+// import { game } from "./patterns/the_revealing_module_pattern/score"
 
 // type Xs = Student.Student[] | Teacher.Teacher[] | School.School[]
 
@@ -109,39 +112,48 @@ function createElement(elementType: string) {
 //   return element
 // }
 
+// function main(): HTMLDivElement {
+//   const element = createElement("div") as HTMLDivElement
+//   const button = document.createElement("button") as HTMLButtonElement
+//   const countTracker = document.createElement("h1") as HTMLHeadingElement
+//   const incrementButton = document.createElement("button") as HTMLButtonElement
+//   const decrementButton = document.createElement("button") as HTMLButtonElement
+
+//   button.innerHTML = ` <span>New game</span> `
+//   countTracker.innerHTML = ` <span>${game.score}</span> `
+//   incrementButton.innerHTML = ` <span>+</span> `
+//   decrementButton.innerHTML = ` <span>-</span> `
+
+//   countTracker.id = "count-tracker"
+//   element.appendChild(button)
+//   element.appendChild(countTracker)
+//   element.appendChild(incrementButton)
+//   element.appendChild(decrementButton)
+
+//   incrementButton.addEventListener("click", () => {
+//     game.increment()
+//   })
+//   decrementButton.addEventListener("click", () => {
+//     game.decrement()
+//   })
+
+//   button.addEventListener("click", () => {
+//     game.newGame()
+//   })
+
+//   return element
+// }
+// root.id = "score"
+
 function main(): HTMLDivElement {
   const element = createElement("div") as HTMLDivElement
-  const button = document.createElement("button") as HTMLButtonElement
-  const countTracker = document.createElement("h1") as HTMLHeadingElement
-  const incrementButton = document.createElement("button") as HTMLButtonElement
-  const decrementButton = document.createElement("button") as HTMLButtonElement
+  const todoView = new TodoView()
 
-  button.innerHTML = ` <span>New game</span> `
-  countTracker.innerHTML = ` <span>${game.score}</span> `
-  incrementButton.innerHTML = ` <span>+</span> `
-  decrementButton.innerHTML = ` <span>-</span> `
-
-  countTracker.id = "count-tracker"
-  element.appendChild(button)
-  element.appendChild(countTracker)
-  element.appendChild(incrementButton)
-  element.appendChild(decrementButton)
-
-  incrementButton.addEventListener("click", () => {
-    game.increment()
-  })
-  decrementButton.addEventListener("click", () => {
-    game.decrement()
-  })
-
-  button.addEventListener("click", () => {
-    game.newGame()
-  })
+  element.innerHTML = `<main>${todoView.render()}</main>`
 
   return element
 }
 
 const root = createElement("main")
-root.id = "score"
 root.appendChild(main())
 document.body.appendChild(root)
