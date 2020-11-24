@@ -1,54 +1,8 @@
 export class TodoView {
   app: HTMLDivElement
-  title: HTMLHeadElement
-  form: HTMLFormElement
-  input: HTMLInputElement
-  submitButton: HTMLButtonElement
-  list: HTMLUListElement
 
   constructor() {
-    this.app = this.getElement("root") as HTMLDivElement
-
-    this.title = this.createElement(
-      "h1",
-      "title",
-      "main-title"
-    ) as HTMLHeadElement
-    this.title.textContent = "Todo List"
-
-    this.form = this.createElement(
-      "form",
-      "todo-form",
-      "todo-form"
-    ) as HTMLFormElement
-
-    this.input = this.createElement(
-      "input",
-      "input",
-      "add-todo-input"
-    ) as HTMLInputElement
-    this.input.type = "text"
-    this.input.placeholder = "add-todo"
-    this.input.name = "todo"
-
-    this.submitButton = this.createElement(
-      "button",
-      "submit-btn",
-      "submit-btn"
-    ) as HTMLButtonElement
-
-    this.list = this.createElement("ul", "list", "list") as HTMLUListElement
-
-    this.form.append(this.input, this.submitButton)
-
-    this.app.append(this.title, this.form, this.list)
-  }
-
-  createElement(tag: string, className: string = "", id: string = "") {
-    const element = document.createElement(tag) as HTMLElement
-    if (className) element.classList.add(className)
-    if (id) element.id = id
-    return element
+    this.app = this.getElement("#root") as HTMLDivElement
   }
 
   getElement(selector: string) {
@@ -57,6 +11,21 @@ export class TodoView {
   }
 
   render() {
-    //
+    this.app.innerHTML += `
+        <main>
+        <h1>Todo list</h1>
+        <form>
+          <div class="form-group">
+            <input type="text" id="form-input" />
+          </div>
+          <div class="form-button-group">
+            <button type="submit">Add todo</button>
+            <button type="submit">Edit todo</button>
+            <button type="submit">Delete todo todo</button>
+          </div>
+        </form>
+        <ul id="todo-list"></ul>
+      </main>
+      `
   }
 }
