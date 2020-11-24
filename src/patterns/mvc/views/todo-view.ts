@@ -88,6 +88,15 @@ export class TodoView {
       ".todo-item"
     ) as NodeListOf<HTMLLIElement>
 
+    const xs = Array.from(todoItems)
+    for (const item of xs) {
+      console.log(document.querySelector("#checked"))
+      document.querySelectorAll("#checked").forEach(check => {
+        check.addEventListener("change", (evt: any) => {
+          console.log(evt.target.checked)
+        })
+      })
+    }
     console.log(todoItems)
   }
 }
