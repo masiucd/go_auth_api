@@ -1,4 +1,4 @@
-import { Teacher } from "../../Teacher"
+import { Teacher } from "../oop/Teacher"
 
 const school = (() => {
   let schoolName: string = ""

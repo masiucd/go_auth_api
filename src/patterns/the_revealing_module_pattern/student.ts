@@ -1,4 +1,4 @@
-import { School } from "../../School"
+import { School } from "../oop/School"
 
 // interface IStudent {
 //   name: string
