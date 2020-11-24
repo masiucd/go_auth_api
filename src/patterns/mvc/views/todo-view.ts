@@ -22,21 +22,30 @@ export class TodoView {
     return htmlElement
   }
 
-  private _getTodoText() {
+  private _getTodoText(): string {
     const input = document.getElementById("form-input") as HTMLInputElement
     const inputValue = input.value
+    return inputValue
   }
 
-  private _resetInput() {
+  private _resetInput(): void {
     const input = document.getElementById("form-input") as HTMLInputElement
     input.value = input.value = ""
+  }
+
+  bindToggleTodo(handler: Function) {
+    const todoItems = document.querySelectorAll(
+      ".todo-item"
+    ) as NodeListOf<HTMLLIElement>
+
+    console.log(todoItems)
   }
 
   renderTodos() {
     return this.todos
       .map(
         todo => `
-        <li>
+        <li id="todo-item" class="todo-item">
           <label for="checked">
             <input type="checkbox" name="checked" id="checked">
           </label>
@@ -74,5 +83,11 @@ export class TodoView {
     return wrapper
   }
 
-  private update() {}
+  private update() {
+    const todoItems = document.querySelectorAll(
+      ".todo-item"
+    ) as NodeListOf<HTMLLIElement>
+
+    console.log(todoItems)
+  }
 }
