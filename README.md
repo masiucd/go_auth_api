@@ -5,7 +5,9 @@
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Tools](#tools)
+- [OPP](#opp)
 - [Module-Pattern](#module-pattern)
+- [MVC](#mvc)
 
 ## About <a name = "about"></a>
 
@@ -128,6 +130,24 @@ export const game = (() => {
 
 we will keep our methods `public` ore `private` depending on how we want the structure/functionality to be.
 For example the methods that gets return from the function will work as `public` methods while methods that are not return will work as a `private method`
+
+## Model View Controller <a name = "mvc"></a>
+
+MVC is a very common pattern for organizing your code.
+It's used in different frameworks and it helps you to organize your code in a good way.
+
+`MVC` stands for _Model - View - Controller_.
+
+- **Model** Manages the data of an application
+- **View** A visual representation of the model
+- **Controller** works like the middleman that talks to the Model and View. You use the controller to access the View ore the Model. The View and Model can't talk each other.
+
+The model is the data. handle the logic and methods that will make the UI change.
+
+The view is how the data is displayed. Mount to the _DOM_ and renders the given `UI`.
+
+The controller connects the model and the view.
+The model never touches/talks to the view. The view never touches/talks to the model. The controller connects them and controls the together.
 
 ## Tools <a name = "tools"></a>
 
