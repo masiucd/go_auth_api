@@ -57,18 +57,18 @@ export class TodoView {
     wrapper.innerHTML = `
     <main id="main">
       <h1>Todo List</h1>
-      <form action="" id="form">
-        <div class="form-group">
-          <input type="text" id="form-input" />
-        </div>
-        <div class="form-button-group">
-          <button type="submit">addTodo</button>
-        </div>
-      </form>
-      <ul id="todo-list">
-        ${this.renderTodos()}
-      </ul>
-  </main>
+        <form action="" id="form">
+          <div class="form-group">
+            <input type="text" id="form-input" />
+          </div>
+          <div class="form-button-group">
+            <button type="submit">addTodo</button>
+          </div>
+        </form>
+        <ul id="todo-list">
+          ${this.renderTodos()}
+        </ul>
+    </main>
       `
 
     return wrapper
@@ -76,18 +76,3 @@ export class TodoView {
 
   private update() {}
 }
-
-// <main id="main>
-// <form id="form" action="">
-//   <div class="form-group">
-//     <input type="text" id="form-input" />
-//   </div>
-//   <div class="form-button-group">
-//     <button type="submit">Add todo</button>
-//   </div>
-// </form>
-
-// <ul id="todo-list">
-// ${this.renderTodos()}
-// </ul>
-// </main>

@@ -19,6 +19,7 @@ export class TodoList {
     this.todos.push(todo)
     return this.todos
   }
+
   editTodo(todoId: number, task: string = "", completed: boolean = false) {
     this.todos = this.todos.map(todo =>
       todo.id === todoId ? { ...todo, task, completed } : todo
