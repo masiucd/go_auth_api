@@ -47,13 +47,3 @@ export class TodoList {
     return this.todos.find(todo => todo.id === todoId)
   }
 }
-
-const t = new TodoList()
-console.log(t.size)
-t.removeTodo(3)
-t.toggleTodo(1)
-console.log(t.allTodos)
-console.log(t.size)
-console.log(t.findTodo(1))
-t.editTodo(1, "hello", false)
-console.log(t.findTodo(1))

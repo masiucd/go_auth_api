@@ -1,16 +1,25 @@
 import { TodoItem } from "../models/todo-list"
 export class TodoView {
-  app: HTMLDivElement
   todos: TodoItem[]
 
   constructor(todos: TodoItem[]) {
-    this.app = this.getElement("#root") as HTMLDivElement
     this.todos = todos
   }
 
   getElement(selector: string) {
     const element = document.querySelector(selector)
     return element
+  }
+
+  createElement(
+    element: string = "",
+    id: string = "",
+    className: string = ""
+  ): HTMLElement {
+    const htmlElement = document.createElement(element) as HTMLElement
+    if (id) htmlElement.id = id
+    if (className) htmlElement.classList.add(className)
+    return htmlElement
   }
 
   private _getTodoText() {
@@ -24,27 +33,18 @@ export class TodoView {
   }
 
   renderTodos() {
-    const output = this.todos
-      .map(
-        todo =>
-          `<li id="todo-item>
-          ${todo.task}
-          ${todo.completed ? "completed" : "not-completed"}
-          <label for="chckbox">
-            <input type="checkbox" name="completed" id="completed" />
-          </label>
-          <button id="delete-btn>
-            Delete todo
-          </button>
-        </li>`
-      )
-      .join("")
-    return output
+    return this.todos.map(todo => `<li>${todo.task} </li> `).join("")
   }
 
-  render() {
-    this.app.innerHTML += `
-        <main>
+  mount(parent: HTMLElement) {
+    parent.appendChild(this.render())
+    this.update()
+  }
+
+  private render() {
+    const wrapper = this.createElement("div", "wrapper", "wrapper")
+    wrapper.innerHTML += `
+        <main id="main>
         <h1>Todo list</h1>
         <form>
           <div class="form-group">
@@ -59,5 +59,8 @@ export class TodoView {
         </ul>
       </main>
       `
+    return wrapper
   }
+
+  private update() {}
 }

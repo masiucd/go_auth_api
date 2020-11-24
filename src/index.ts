@@ -6,8 +6,9 @@ function createElement(elementType: string) {
 }
 
 ;(() => {
+  const root = document.getElementById("root") as HTMLDivElement
   const todoList = new TodoList()
   const list = todoList.allTodos
   const todoView = new TodoView(list)
-  todoView.render()
+  todoView.mount(root)
 })()
