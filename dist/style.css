@@ -15,7 +15,7 @@ body {
 }
 
 main {
-  margin: 0 auto;
+  margin: 5rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +54,6 @@ form {
 
 .form-button-group {
   padding: 1rem;
-  border: 2px solid red;
   width: 80%;
   display: flex;
   justify-content: left;
@@ -70,6 +69,7 @@ button {
   margin-left: 0.5em;
   background: #fff;
   box-shadow: 2px 2px 3px #ccc;
+  cursor: pointer;
 }
 
 #todo-list {
@@ -78,4 +78,36 @@ button {
   justify-content: center;
   align-items: center;
   font-size: 10px;
+  background: #00838f;
+  padding: 1em;
+  color: #fff;
+  height: 100%;
+  width: 80%;
+  list-style: none;
+  box-shadow: 1px 3px 1px 1px #333;
+  border-radius: 4px;
+}
+
+ul li {
+  font-size: 1.5em;
+  border: 2px solid;
+  padding: 0.2em 3em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin: 0.5rem 0;
+}
+
+ul li label {
+  flex: 1 0 auto;
+}
+ul li strong {
+  flex: 1 0 auto;
+}
+
+ul li button {
+  box-shadow: none;
+  width: 5em;
 }
