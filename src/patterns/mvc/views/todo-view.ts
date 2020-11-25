@@ -33,12 +33,15 @@ export class TodoView {
     input.value = input.value = ""
   }
 
-  bindToggleTodo(handler: Function) {
+  bindToggleTodo = () => (handler: Function) => {
     const todoItems = document.querySelectorAll(
       ".todo-item"
     ) as NodeListOf<HTMLLIElement>
 
-    console.log(todoItems)
+    for (let item of Array.from(todoItems)) {
+      console.log("binder", item)
+    }
+    handler()
   }
 
   renderTodos() {
@@ -84,6 +87,7 @@ export class TodoView {
   }
 
   private update() {
+    this.bindToggleTodo()
     const todoItems = document.querySelectorAll(
       ".todo-item"
     ) as NodeListOf<HTMLLIElement>
@@ -97,6 +101,6 @@ export class TodoView {
         })
       })
     }
-    console.log(todoItems)
+    // console.log(todoItems)
   }
 }

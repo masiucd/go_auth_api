@@ -5,6 +5,7 @@
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Tools](#tools)
+- [Proto](#proto)
 - [OPP](#opp)
 - [Module-Pattern](#module-pattern)
 - [MVC](#mvc)
@@ -43,7 +44,7 @@ Have fun !✌🏻ƛ🤩
 - sets a hidden property which is **underscore underscore proto underscore underscore** sometime call _dunder proto_
 - final thing it will automatically return out object from the function
 
-## **\_\_proto\_\_\_**
+## <a name = "proto" ></a> **\_\_proto\_\_\_**
 
 What is going on when we call a method that does not exists on the object itself but we declared the method on the prototype like this:
 
@@ -61,11 +62,22 @@ What is going on when we call a method that does not exists on the object itself
 
 ```
 
-You will probably thing it will go straight forward to the prototype but that's not how Javascript works.
+You will probably think it will go straight forward to the prototype but that's not how Javascript works.
 It will _panic_ for a bit when it can't find the method itself on the `u1` object.
 Luckily javascript has something that calls `dunder proto` which then will go and check if the `birthday` method actually exists on the `User.prototype` and then call the `birthday method`.
 
 [\_\_proto\_\_ vs prototype](https://stackoverflow.com/questions/9959727/proto-vs-prototype-in-javascript)
+
+**proto** is also automatically created when a function is created and that is o what JavaScript will use to look up methods it doesn't find immediately on the current prototype.
+
+```js
+function foo() {}
+
+foo.name = "bar"
+console.log(foo.name) // foo
+foo.prototype.age = 21
+console.log(foo.prototype) // foo {age:21}
+```
 
 If you want to get deeper on how `OOP` works in _Javascript_ I highly recommend to read [Kyle Simpsons](https://github.com/getify/You-Dont-Know-JS)
 

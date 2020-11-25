@@ -9,7 +9,7 @@ export class TodoController {
     this.model = model
     this.view = view
 
-    this.view.bindToggleTodo(this.handleAddTodo)
+    this.view.bindToggleTodo()
   }
 
   handleAddTodo = (todo: TodoItem) => {
