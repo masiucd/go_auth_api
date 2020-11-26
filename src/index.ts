@@ -1,6 +1,3 @@
-import { TodoView } from "./patterns/mvc/views/todo-view"
-import { TodoList } from "./patterns/mvc/models/todo-list"
-import { TodoController } from "./patterns/mvc/controllers/todo-controller"
 import { BacklogController } from "./patterns/mvc/controllers/backlog-controller"
 import { BacklogModel } from "./patterns/mvc/models/backlog-model"
 import { BacklogView } from "./patterns/mvc/views/backlog-view"

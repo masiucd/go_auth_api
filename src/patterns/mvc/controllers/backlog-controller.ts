@@ -8,20 +8,23 @@ export class BacklogController {
     this.model = model
     this.view = view
 
-    this.backlogListChanged(this.model.backlogs)
+    this.model.bindBacklogListChanged(this.updateBacklogList)
 
     this.view.bindAddBacklog(this.handleAddBacklog)
     this.view.bindDeleteBacklog(this.handleDelete)
     this.view.bindEditBacklog(this.handleEditBacklog)
     this.view.bindToggleBacklog(this.handleToggleBacklog)
+
+    this.updateBacklogList(this.model.backlogs)
   }
 
-  backlogListChanged = (list: BacklogItem[]) => {
+  updateBacklogList = (list: BacklogItem[]) => {
     this.view.renderBacklogItems(list)
   }
 
-  handleAddBacklog = (item: BacklogItem) => {
-    this.model.addBacklog(item)
+  handleAddBacklog = (taskTitle: string) => {
+    this.model.addBacklog(taskTitle)
+    console.log(this.model.allBacklogs)
   }
   handleEditBacklog = (backlogId: number, task: string, completed: boolean) => {
     this.model.editBacklog(backlogId, task, completed)

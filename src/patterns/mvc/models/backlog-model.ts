@@ -15,8 +15,17 @@ export class BacklogModel {
     ]
   }
 
-  addBacklog(todo: BacklogItem) {
-    this.backlogs.push(todo)
+  bindBacklogListChanged(fn: any) {
+    console.log("fn in model")
+  }
+
+  addBacklog(taskTitle: string) {
+    const backlog: BacklogItem = {
+      id: this.backlogs.length + 1,
+      task: taskTitle,
+      completed: false,
+    }
+    this.backlogs.push(backlog)
     return this.backlogs
   }
 

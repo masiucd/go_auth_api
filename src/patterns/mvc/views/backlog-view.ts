@@ -2,6 +2,7 @@ import { BacklogItem } from "../models/backlog-model"
 
 export class BacklogView {
   app: HTMLDivElement
+  wrapper: HTMLDivElement
   title: HTMLHeadElement
   form: HTMLFormElement
   input: HTMLInputElement
@@ -11,6 +12,7 @@ export class BacklogView {
   constructor() {
     // root
     this.app = this.getElement("#root") as HTMLDivElement
+    this.wrapper = this.createElement("div", "wrapper") as HTMLDivElement
 
     this.title = this.createElement("h1", "main-title") as HTMLHeadElement
     this.title.textContent = "BackLogList List"
@@ -33,7 +35,10 @@ export class BacklogView {
     ) as HTMLUListElement
 
     this.form.append(this.input, this.submitButton)
-    this.app.append(this.title, this.form, this.backLogList)
+
+    this.wrapper.append(this.title, this.form, this.backLogList)
+
+    this.app.append(this.wrapper)
   }
 
   createElement(tag: string, className: string = "") {
@@ -58,6 +63,10 @@ export class BacklogView {
   }
 
   renderBacklogItems(backlogItems: BacklogItem[]) {
+    while (this.backLogList.firstChild) {
+      this.backLogList.removeChild(this.backLogList.firstChild)
+    }
+
     if (backlogItems.length === 0) {
       const p = this.createElement("p", "no-backlogs-message")
       p.innerText = "No backlogs!"
@@ -68,7 +77,7 @@ export class BacklogView {
         li.id = String(item.id)
 
         const checkbox = this.createElement(
-          "checkbox",
+          "input",
           "toggle-box"
         ) as HTMLInputElement
         checkbox.type = "checkbox"
@@ -93,11 +102,6 @@ export class BacklogView {
 
         this.backLogList.append(li)
       })
-      // let html = ``
-      // for (let item of Array.from(backlogItems)) {
-      //   html += `<li> ${item.task}</li>  `
-      // }
-      // this.backLogList.innerHTML = html
     }
   }
 
@@ -105,8 +109,12 @@ export class BacklogView {
     this.form.addEventListener("submit", (event: Event) => {
       event.preventDefault()
       console.log("submitted")
+      handler(this._getBacklogText)
+      console.log(this._getBacklogText)
+      this._clearInput()
     })
   }
+
   bindToggleBacklog(handler: (id: number) => void) {}
   bindDeleteBacklog(handler: (id: number) => void) {}
   bindEditBacklog(
