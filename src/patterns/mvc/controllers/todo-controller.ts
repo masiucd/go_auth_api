@@ -1,34 +1,23 @@
-import { TodoItem, TodoList } from "../models/todo-list"
+import { TodoItem, TodoModel } from "../models/todo-model"
 import { TodoView } from "../views/todo-view"
 
 export class TodoController {
-  model: TodoList
-  view: TodoView
+  todoView: TodoView
+  todoModel: TodoModel
+  constructor(todoView: TodoView, todoModel: TodoModel) {
+    this.todoView = todoView
+    this.todoModel = todoModel
 
-  constructor(model: TodoList, view: TodoView) {
-    this.model = model
-    this.view = view
+    this.handleRender(this.todoModel.getAllTodos())
 
-    this.view.bindToggleTodo()
+    this.todoView.bindDeleteTodo(this.handleRemoveTodo)
   }
 
-  handleAddTodo = (todo: TodoItem) => {
-    this.model.addTodo(todo)
+  handleRender = (todos: TodoItem[]) => {
+    this.todoView.render(todos)
   }
 
-  handleEditTodo = (id: number, task: string, completed: boolean) => {
-    this.model.editTodo(id, task, completed)
-  }
-
-  handleDeleteTodo = (id: number) => {
-    this.model.removeTodo(id)
-  }
-
-  handleMount = (element: HTMLElement) => {
-    this.view.mount(element)
-  }
-
-  handleToggle = (id: number) => {
-    this.model.toggleTodo(id)
+  handleRemoveTodo = (id: number) => {
+    this.todoModel.deleteTodo(id)
   }
 }

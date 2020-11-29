@@ -1,106 +1,92 @@
-import { TodoItem } from "../models/todo-list"
+import { TodoItem } from "../models/todo-model"
 export class TodoView {
-  todos: TodoItem[]
+  app: HTMLDivElement
+  wrapper: HTMLDivElement
+  title: HTMLHeadElement
+  form: HTMLFormElement
+  input: HTMLInputElement
+  submitButton: HTMLButtonElement
+  todoList: HTMLUListElement
+  constructor() {
+    this.app = this.getElement("#root") as HTMLDivElement
+    this.wrapper = this.createElement("div", "wrapper") as HTMLDivElement
 
-  constructor(todos: TodoItem[]) {
-    this.todos = todos
+    this.title = this.createElement("h1", "main-title") as HTMLHeadElement
+    this.title.textContent = "BackLogList List"
+
+    this.form = this.createElement("form", "backlog-form") as HTMLFormElement
+
+    this.input = this.createElement("input", "add-input") as HTMLInputElement
+    this.input.type = "text"
+    this.input.placeholder = "enter a new backlog to the backlog..."
+
+    this.submitButton = this.createElement(
+      "button",
+      "add-btn"
+    ) as HTMLButtonElement
+    this.submitButton.innerText = "submit"
+
+    this.todoList = this.createElement("ul", "backlog-list") as HTMLUListElement
+
+    this.form.append(this.input, this.submitButton)
+
+    this.wrapper.append(this.title, this.form, this.todoList)
+
+    this.app.append(this.wrapper)
+  }
+
+  createElement(tag: string, className: string = "") {
+    const element = document.createElement(tag)
+    if (className) element.classList.add(className)
+
+    return element
   }
 
   getElement(selector: string) {
     const element = document.querySelector(selector)
+
     return element
   }
 
-  createElement(
-    element: string = "",
-    id: string = "",
-    className: string = ""
-  ): HTMLElement {
-    const htmlElement = document.createElement(element) as HTMLElement
-    if (id) htmlElement.id = id
-    if (className) htmlElement.classList.add(className)
-    return htmlElement
-  }
+  mount(parent: HTMLElement) {}
 
-  private _getTodoText(): string {
-    const input = document.getElementById("form-input") as HTMLInputElement
-    const inputValue = input.value
-    return inputValue
-  }
+  render(todos: TodoItem[]) {
+    if (todos.length === 0) {
+      const p = this.createElement("p", "p-message")
+      p.textContent = "no todos!"
+      this.wrapper.append(p)
+    } else {
+      todos.forEach(todo => {
+        const li = this.createElement("li", "todo-item")
+        li.id = `${todo.task}-${todo.id}`
+        li.dataset.id = `${todo.id}`
 
-  private _resetInput(): void {
-    const input = document.getElementById("form-input") as HTMLInputElement
-    input.value = input.value = ""
-  }
+        const deleteButton = this.createElement("button", "delete-btn")
+        deleteButton.textContent = `delete ${todo.task.slice(0.3)}...`
 
-  bindToggleTodo = () => (handler: Function) => {
-    const todoItems = document.querySelectorAll(
-      ".todo-item"
-    ) as NodeListOf<HTMLLIElement>
+        const span = this.createElement("span", "todo-text")
+        span.textContent = todo.task
 
-    for (let item of Array.from(todoItems)) {
-      console.log("binder", item)
-    }
-    handler()
-  }
+        const checkbox = this.createElement(
+          "input",
+          "toggle-box"
+        ) as HTMLInputElement
+        checkbox.type = "checkbox"
+        checkbox.checked = todo.completed
 
-  renderTodos() {
-    return this.todos
-      .map(
-        todo => `
-        <li id="todo-item" class="todo-item">
-          <label for="checked">
-            <input type="checkbox" name="checked" id="checked">
-          </label>
-          <strong>${todo.task}</strong> 
-          <button id="delete">delete</button>
-        </li>`
-      )
-      .join("")
-  }
+        li.append(checkbox, span, deleteButton)
 
-  mount(parent: HTMLElement) {
-    parent.appendChild(this.render())
-    this.update()
-  }
-
-  private render() {
-    const wrapper = this.createElement("div", "wrapper", "wrapper")
-    wrapper.innerHTML = `
-    <main id="main">
-      <h1>Todo List</h1>
-        <form action="" id="form">
-          <div class="form-group">
-            <input type="text" id="form-input" />
-          </div>
-          <div class="form-button-group">
-            <button type="submit">addTodo</button>
-          </div>
-        </form>
-        <ul id="todo-list">
-          ${this.renderTodos()}
-        </ul>
-    </main>
-      `
-
-    return wrapper
-  }
-
-  private update() {
-    this.bindToggleTodo()
-    const todoItems = document.querySelectorAll(
-      ".todo-item"
-    ) as NodeListOf<HTMLLIElement>
-
-    const xs = Array.from(todoItems)
-    for (const item of xs) {
-      console.log(document.querySelector("#checked"))
-      document.querySelectorAll("#checked").forEach(check => {
-        check.addEventListener("change", (evt: any) => {
-          console.log(evt.target.checked)
-        })
+        this.todoList.append(li)
       })
     }
-    // console.log(todoItems)
+  }
+  bindDeleteTodo(fn: Function) {
+    const deleteBtn = this.getElement(".delete-btn")
+    console.log(deleteBtn)
+    deleteBtn?.addEventListener("click", (e: any) => {
+      console.log(e.target.parentElement)
+      console.log(e.target.parentElement.dataset)
+      console.log("clicked")
+    })
   }
 }
