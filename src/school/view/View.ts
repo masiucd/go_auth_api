@@ -6,9 +6,8 @@ export class View {
   main: HTMLDivElement
   wrapper: HTMLDivElement
   title: HTMLHeadElement
-  form: HTMLFormElement
-  input: HTMLInputElement
-  submitButton: HTMLButtonElement
+
+  modalButton: HTMLButtonElement
 
   students: Student[]
   courses: Course[]
@@ -28,36 +27,19 @@ export class View {
     this.title = this.createElement("h1", "main-title") as HTMLHeadElement
     this.title.textContent = "WesCoast"
 
-    this.coursesList = this.createElement(
-      "ul",
-      "courses-list",
-    ) as HTMLUListElement
-    this.studentList = this.createElement(
-      "ul",
-      "students-list",
-    ) as HTMLUListElement
-    this.teachersList = this.createElement(
-      "ul",
-      "teachaers-list",
-    ) as HTMLUListElement
+    this.modalButton = this.createElement("button", "modal-btn") as HTMLButtonElement
+    this.modalButton.textContent = "show data"
 
-    this.form = this.createElement("form", "backlog-form") as HTMLFormElement
-
-    this.input = this.createElement("input", "add-input") as HTMLInputElement
-    this.input.type = "text"
-    this.input.placeholder = "enter a new backlog to the backlog..."
-
-    this.submitButton = this.createElement(
-      "button",
-      "add-btn",
-    ) as HTMLButtonElement
-    this.submitButton.innerText = "submit"
-
-    this.form.append(this.input, this.submitButton)
+    this.coursesList = this.createElement("ul", "courses-list") as HTMLUListElement
+    this.studentList = this.createElement("ul", "students-list") as HTMLUListElement
+    this.teachersList = this.createElement("ul", "teachaers-list") as HTMLUListElement
+    this.coursesList.classList.add("hide")
+    this.teachersList.classList.add("hide")
+    this.studentList.classList.add("hide")
 
     this.wrapper.append(
       this.title,
-      this.form,
+      this.modalButton,
       this.coursesList,
       this.studentList,
       this.teachersList,
@@ -85,6 +67,8 @@ export class View {
         student =>
           `
         <li>${student.firstName}-${student.lastName}</li>
+        <p>${student.firstName} currently study:</p>
+        ${student.courses.map(course => `<li>${course.subject}</li>`).join("")}
       `,
       )
       .join("")
@@ -104,7 +88,11 @@ export class View {
       .map(
         course =>
           `
-        <li>${course.subject}</li>
+        <li class="course">${course.subject}</li>
+        <p>Students that read ${course.subject}</p>
+        ${course.students
+          .map(student => `<li>${student.firstName}- ${student.lastName} </li>`)
+          .join("")}
       `,
       )
       .join("")
@@ -124,5 +112,10 @@ export class View {
       <li> <strong>Courses List</strong> </li>
       ${this.renderCourses()}
     `
+    this.modalButton.addEventListener("click", () => {
+      this.studentList.classList.toggle("show")
+      this.coursesList.classList.toggle("show")
+      this.teachersList.classList.toggle("show")
+    })
   }
 }

@@ -1,16 +1,11 @@
+import { Course } from "./Course"
 import { Person } from "./Person"
-import { Subject } from "./Types"
 
 export class Student extends Person {
-  subjects: Subject[]
+  courses: Course[]
 
-  constructor(
-    id: string,
-    firstName: string,
-    lastName: string,
-    subjects: Subject[],
-  ) {
+  constructor(id: string, firstName: string, lastName: string, courses: Course[]) {
     super(id, firstName, lastName)
-    this.subjects = subjects
+    this.courses = courses
   }
 }

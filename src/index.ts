@@ -8,6 +8,8 @@ import { nanoid } from "nanoid"
   const mike = new Student(nanoid(), "Mike", "Szymkowiak", [])
   const jon = new Student(nanoid(), "Jon", "Smith", [])
   const clara = new Student(nanoid(), "Clara", "Sten", [])
+  const kim = new Student(nanoid(), "Kim", "Kallstrom", [])
+  const stina = new Student(nanoid(), "Stina", "Turner", [])
 
   const boris = new Teacher(nanoid(), "Boris", "Einstein", [])
   const linda = new Teacher(nanoid(), "Linda", "Smith", [])
@@ -17,10 +19,18 @@ import { nanoid } from "nanoid"
   const english = new Course(nanoid(), "english", [], boris)
   const swedish = new Course(nanoid(), "swedish", [], boris)
 
+  math.addStudent(mike)
+  math.addStudent(jon)
+  english.addStudent(clara)
+  english.addStudent(stina)
+  swedish.addStudent(kim)
+  swedish.addStudent(stina)
+
   const students = [mike, jon, clara]
   const teachers = [boris, linda, mia]
   const courses = [math, english, swedish]
 
   const v = new View(students, courses, teachers)
-  console.log(v.render())
+  // console.log(v.render())
+  v.render()
 })()

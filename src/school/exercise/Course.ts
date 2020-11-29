@@ -8,12 +8,7 @@ export class Course {
   subject: Subject
   students: Student[]
   teacher: Teacher
-  constructor(
-    id: string,
-    subject: Subject,
-    students: Student[],
-    teacher: Teacher,
-  ) {
+  constructor(id: string, subject: Subject, students: Student[], teacher: Teacher) {
     this.id = id
     this.subject = subject
     this.students = students
@@ -25,9 +20,9 @@ export class Course {
     // })
   }
 
-  addStudent(student: Student, subject: Subject) {
+  addStudent(student: Student) {
     this.students.push(student)
-    student.subjects.push(subject)
+    student.courses.push(this)
   }
 
   removeStudent(studentID: string): void {
@@ -37,4 +32,5 @@ export class Course {
     const student = this.students.find(student => student.id === studentID)
     return student && student
   }
+  updateStudent(student: Student): void {}
 }
