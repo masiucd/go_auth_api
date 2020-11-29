@@ -21,5 +21,6 @@ import { nanoid } from "nanoid"
   const teachers = [boris, linda, mia]
   const courses = [math, english, swedish]
 
-  new View(students, courses, teachers)
+  const v = new View(students, courses, teachers)
+  console.log(v.render())
 })()

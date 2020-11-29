@@ -68,20 +68,12 @@ button {
   margin: 1rem auto;
 }
 
-.backlog-list {
+ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 10px;
-  background: rgba(38, 50, 56, 0.5);
-  padding: 1em;
-  color: #fff;
-  height: 100%;
-  width: 80%;
-  list-style: none;
-  box-shadow: 1px 3px 1px 1px #333;
-  border-radius: 4px;
+  padding: 2rem;
 }
 
 ul li {
