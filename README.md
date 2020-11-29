@@ -9,6 +9,7 @@
 - [OPP](#opp)
 - [Module-Pattern](#module-pattern)
 - [MVC](#mvc)
+- [Singleton](#singleton)
 
 ## About <a name = "about"></a>
 
@@ -99,9 +100,7 @@ export const game = (() => {
   // Private
   const updateScore = (newScore: number) => {
     score = newScore
-    const countTracker = document.getElementById(
-      "count-tracker"
-    ) as HTMLHeadingElement
+    const countTracker = document.getElementById("count-tracker") as HTMLHeadingElement
     countTracker.innerHTML = ` <span>${score}</span> `
   }
 
@@ -160,6 +159,16 @@ The view is how the data is displayed. Mount to the _DOM_ and renders the given 
 
 The controller connects the model and the view.
 The model never touches/talks to the view. The view never touches/talks to the model. The controller connects them and controls the together.
+
+## Singleton <a name = "singleton"></a>
+
+Singleton is implemented by creating a class with a method that creates an instance if there is not already one.
+If there is an instance of the class, the method returns a reference of that object. To prevent the creation of multiple instances, you could check if there is a instance of the class.
+
+The idea with a singleton class is that in the program there will only be one and only one instance of the class and that the user of the class does not need to know when it is created. The singleton class is created the first time someone asks for a reference to the class.
+A singleton is known as you probably heard `global`, downside with this is that is available throughout the code base, it can be overused,and really hard to track while your application scales in size.
+It is also harder to test a `singleton` object. Think for yourself when you have a lot of different objects that use the same `singleton`.
+<img src="./singleton.png" />
 
 ## Tools <a name = "tools"></a>
 

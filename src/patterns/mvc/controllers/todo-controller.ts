@@ -8,7 +8,7 @@ export class TodoController {
     this.todoView = todoView
     this.todoModel = todoModel
 
-    this.handleRender(this.todoModel.getAllTodos())
+    this.handleRender(this.todoModel.todos)
 
     this.todoView.bindDeleteTodo(this.handleRemoveTodo)
   }

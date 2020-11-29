@@ -6,6 +6,7 @@ export interface TodoItem {
 
 export class TodoModel {
   todos: TodoItem[] = []
+
   constructor() {
     this.todos = [
       { id: 1, task: "go out with the dog", completed: false },
@@ -27,6 +28,7 @@ export class TodoModel {
   deleteTodo(todoId: number): void {
     this.todos = this.todos.filter(todo => todo.id !== todoId)
   }
+
   get size() {
     return this.todos.length
   }

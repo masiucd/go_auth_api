@@ -42,13 +42,16 @@ export class TodoView {
     return element
   }
 
-  getElement(selector: string) {
-    const element = document.querySelector(selector)
+  getElement(selector: string, list: boolean = false) {
+    if (list) {
+      const elements = document.querySelectorAll(selector)
+      return elements
+    } else {
+      const element = document.querySelector(selector)
 
-    return element
+      return element
+    }
   }
-
-  mount(parent: HTMLElement) {}
 
   render(todos: TodoItem[]) {
     if (todos.length === 0) {
@@ -79,14 +82,20 @@ export class TodoView {
         this.todoList.append(li)
       })
     }
+    console.log(todos)
   }
   bindDeleteTodo(fn: Function) {
-    const deleteBtn = this.getElement(".delete-btn")
-    console.log(deleteBtn)
-    deleteBtn?.addEventListener("click", (e: any) => {
-      console.log(e.target.parentElement)
-      console.log(e.target.parentElement.dataset)
-      console.log("clicked")
+    const deleteBtns = this.getElement(
+      ".delete-btn",
+      true
+    ) as NodeListOf<HTMLButtonElement>
+
+    Array.from(deleteBtns).forEach(item => {
+      item.addEventListener("click", (e: any) => {
+        const parsedId = parseInt(e.target.parentElement.dataset.id, 10)
+        fn(parsedId)
+        console.log(parsedId)
+      })
     })
   }
 }
