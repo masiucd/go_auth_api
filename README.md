@@ -168,6 +168,7 @@ If there is an instance of the class, the method returns a reference of that obj
 The idea with a singleton class is that in the program there will only be one and only one instance of the class and that the user of the class does not need to know when it is created. The singleton class is created the first time someone asks for a reference to the class.
 A singleton is known as you probably heard `global`, downside with this is that is available throughout the code base, it can be overused,and really hard to track while your application scales in size.
 It is also harder to test a `singleton` object. Think for yourself when you have a lot of different objects that use the same `singleton`.
+
 <img src="./singleton.png" />
 
 ## Tools <a name = "tools"></a>
