@@ -1,129 +1,134 @@
+:root {
+  /* Define Colors as colors */
+  --green: #00ebc7;
+  --red: #ff5470;
+  --yellow: #fde24f;
+  --black: #1b2d45;
+  --dark: #232946;
+  --dark2: #121629;
+  --pink: #eebbc3;
+  --white: #fffffe;
+  --greyish: #b8c1ec;
+  --blackTransparent: rgba(27, 45, 69, 0.4);
+  --white: #feffff;
+  --darkBlue: #00214d;
+  --grey: #bfbfbf;
+  --lightGrey: #f2f4f6;
+  --transparentDark: rgba(0, 0, 0, 0.05);
+  --transparentDark2: rgba(0, 0, 0, 0.1);
+  --transparentDark3: rgba(0, 0, 0, 0.06);
+  /* Define Colors intentions */
+
+  --primary: var(--green);
+  --danger: var(--red);
+  --background: var(--lightGrey);
+  --headerAndFooterBg: var(--black);
+  --headerAndFooterColor: var(--white);
+  --textColor: var(--black);
+  --lineColor: var(--grey);
+  --border-left-color: var(--black);
+
+  /* elements */
+  --bg: var(--dark);
+  --paragraph: var(--greyish);
+  --button: var(--pink);
+  --button-text: var(--dark);
+
+  /* Styles */
+  --line: solid 1px var(--lineColor);
+
+  /* Elevations */
+  --shadowXs: 0 0 0 1px var(--transparentDark);
+  --shadowS: 0 1px 2px 0 var(--transparentDark);
+  --shadow: 0 1px 3px 0 var(--transparentDark2), 0 1px 2px 0 var(--transparentDark3);
+  --shadowMd: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadowLg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadowXl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow2Xl: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+  --shadowInner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadowOutline: 0 0 0 3px rgba(66, 153, 225, 0.5);
+
+  /* Type */
+  --headingFont: "Space Mono", monospace;
+  --bodyFont: "Work Sans", sans-serif;
+  --h1: 3.052em;
+  --h2: 2.441em;
+  --h3: 1.953em;
+  --h4: 1.563em;
+  --h5: 1.25em;
+  --smallText: 0.8em;
+
+  /* positioning */
+  --containerPadding: 2.5%;
+  --headerHeight: 10rem;
+
+  /* Utils */
+  --border-radius: 4px;
+
+  /* transitions */
+  --main-trans: 300ms ease-in all;
+}
+
 *::before,
 *::after,
 * {
   box-sizing: inherit;
-}
-html {
-  box-sizing: border-box;
-}
-body {
-  position: relative;
-  font-size: 10px;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+html {
+  font-size: 112.5%;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+/*18px*/
+
+body {
+  font-family: var(--bodyFont);
+  font-weight: 400;
+  line-height: 1.65;
+  /* padding-bottom: 300px; */
+  background: var(--background);
+  color: var(--textColor);
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+li {
+  text-decoration: none;
 }
 
 .wrapper {
-  margin: 5rem auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 900px;
-}
-
-.main-title {
-  font-size: 5em;
-  text-align: center;
-}
-
-form {
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.add-input {
-  width: 80%;
-  border-radius: 4px;
-  border: 2px solid;
-  padding: 0.3em 0.6em;
-  font-size: 18px;
-}
-
-.form-button-group {
-  padding: 1rem;
-  width: 80%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
+  max-width: 970px;
   margin: 0 auto;
 }
 
-button {
-  padding: 0.4em 0.8em;
-  font-size: 1.2em;
-  border-radius: 4px;
-  border: 2px solid #333;
-  background: #fff;
-  box-shadow: 2px 2px 3px #ccc;
-  cursor: pointer;
-}
-.add-btn {
-  width: 14em;
-  margin: 1rem auto;
-}
-
-ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  transition: 200ms ease-in-out all;
-  position: relative;
-}
-
-ul li {
-  font-size: 1.5em;
-  border: 2px solid;
-  padding: 0.2em 3em;
+.table-wrapper {
+  border: 2px solid red;
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border: none;
-  margin: 0.5rem 0;
 }
 
-ul li input[type="checkbox"] {
-  width: 20%;
-}
-ul li span {
-  width: 40%;
-  font-size: 1.3em;
-  text-transform: capitalize;
-  border-bottom: 1px solid #333;
+caption {
+  font-size: var(--h3);
+  text-align: center;
+  margin: 0 auto;
+  width: 8em;
 }
 
-ul li button {
-  box-shadow: none;
-  width: 40%;
-  font-size: 1em;
+table {
+  margin: 0 auto;
+  min-width: 24rem;
+  box-shadow: var(--shadowLg);
+  padding: 0.5em;
 }
 
-.hide {
-  position: fixed;
-  transform: translateX(1000%);
-  opacity: 0;
-}
-.hide::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.show {
-  transform: translateX(0);
-  position: static;
-  opacity: 1;
+td,
+th {
+  padding: 0.5rem;
+  box-shadow: var(--shadowMd);
 }
