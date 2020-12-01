@@ -4,6 +4,6 @@ export interface TeacherStudentConstruct {
   displayInfo: () => DisplayInfo
 }
 
-interface DisplayInfo {
+export interface DisplayInfo {
   [key: string]: string
 }

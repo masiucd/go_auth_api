@@ -1,13 +1,14 @@
+import { Course } from "../../mvc/models/course-model"
 import { Teacher } from "../models/teacher"
 
 export class ListView {
   parentElement: HTMLDivElement
-  dataList: Teacher[]
+  dataList: Array<any>
   title: string
   subTitles: string[]
   constructor(
     parentElement: HTMLDivElement,
-    dataList: Teacher[],
+    dataList: Array<any>,
     title: string,
     subTitles: string[],
   ) {
@@ -26,8 +27,8 @@ export class ListView {
           ${this.subTitles.map(t => `<th>${t}</th>`).join("")}
         </thead>
         <tbody>
-          ${this.dataList
-            .map(data => {
+          ${(this.dataList as Array<any>)
+            .map((data: any) => {
               const displayInfo = data.displayInfo() as { [key: string]: string }
               return `
                 <tr>

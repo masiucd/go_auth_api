@@ -126,7 +126,9 @@ table {
   box-shadow: var(--shadowLg);
   padding: 0.5em;
 }
-
+td {
+  text-align: center;
+}
 td,
 th {
   padding: 0.5rem;
