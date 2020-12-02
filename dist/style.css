@@ -128,7 +128,15 @@ table {
 }
 td {
   text-align: center;
+  cursor: pointer;
+  transition: 200ms ease-in-out all;
 }
+td:active {
+  position: relative;
+  top: 6px;
+  box-shadow: var(--shadow2Xl);
+}
+
 td,
 th {
   padding: 0.5rem;
