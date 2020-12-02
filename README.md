@@ -10,6 +10,8 @@
 - [Module-Pattern](#module-pattern)
 - [MVC](#mvc)
 - [Singleton](#singleton)
+- [Observer](#observer)
+- [Mediator](#mediator)
 
 ## About <a name = "about"></a>
 
@@ -214,6 +216,30 @@ const logger = new Logger()
 Object.freeze(logger)
 export { logger }
 ```
+
+## Observer <a name = "observer"></a>
+
+The `Observer Pattern` is a very popular design pattern that are used across a lot of Javascript applications.
+Mostly of the famous Javascript frameworks/libraries using this pattern in some way.
+Let's take `React` for example, when you will often hear the term `state/update state`, `render`, `mount`.
+When state s updated the component will re-render, components in `react` are just a representation of what the interface should look like.
+
+**Application state**
+For example, maybe you have a application/program that displays a list of users that get fetched from a external API.
+When the app loads, it makes sense to make the API call once and store the data somewhere, in this case the `state`.
+The app could then render based on changes to its state. So if the the state changes we should update our view interface and based on our new state.
+_According to Wikipedia_
+
+> The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
+
+The observer pattern defines a one-to-many relationship. When one object updates,
+it should notify all the objects that the updated object has been updated.
+
+- subject – This is the object that will send out a notification to all of the ‘observers’ that will get notified if the subject has been updated.In this case, the subject will be the application state.
+
+- observers – These are the objects that want to know when the subject('state') has changed. In this case, these will be for example the page elements that need to update when the application state changes.
+
+## Mediator <a name = "mediator"></a>
 
 ## Tools <a name = "tools"></a>
 
