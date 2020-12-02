@@ -1,16 +1,16 @@
 import { Course } from "../../mvc/models/course-model"
 import { Teacher } from "../models/teacher"
 
-export class ListView {
+export class ListView<T> {
   parentElement: HTMLDivElement
-  dataList: Array<any>
+  dataList: Array<T>
   title: string
   subTitles: string[]
   constructor(
     parentElement: HTMLDivElement,
     dataList: Array<any>,
     title: string,
-    subTitles: string[]
+    subTitles: string[],
   ) {
     this.parentElement = parentElement
     this.dataList = dataList
@@ -19,12 +19,12 @@ export class ListView {
   }
 
   clickHandler(subscriber: Function) {
-    console.log(document.querySelectorAll("tr"))
     const trs = document.querySelectorAll("tr")
     trs.forEach(tr =>
       tr.addEventListener("click", () => {
-        subscriber(tr.dataset.id)
-      })
+        subscriber(parseInt(tr.dataset.id!, 10))
+        sessionStorage.setItem("user", String(tr.dataset.id))
+      }),
     )
   }
 

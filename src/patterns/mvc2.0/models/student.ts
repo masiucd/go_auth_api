@@ -2,7 +2,7 @@ import { nanoid } from "nanoid"
 import { Person } from "./Person"
 
 export class Student extends Person {
-  constructor(id: string, firstName: string, lastName: string, email: string, age: number) {
+  constructor(id: number, firstName: string, lastName: string, email: string, age: number) {
     super(id, firstName, lastName, email, age)
   }
   displayInfo() {
@@ -15,10 +15,10 @@ export class Student extends Person {
 }
 
 export const loadStudents = () => [
-  new Student(nanoid(), "Frank", "Mellberg", "frank@isObject.com", 21),
-  new Student(nanoid(), "Rio", "Ferdinand", "rio@isObject.com", 25),
-  new Student(nanoid(), "Nemanja", "Vidic", "nemanja@isObject.com", 32),
-  new Student(nanoid(), "Fredrik", "ljungberg", "fredrik@isObject.com", 32),
-  new Student(nanoid(), "Lotta", "Schelin", "lotta@isObject.com", 21),
-  new Student(nanoid(), "Stina", "Olofsson", "sina@isObject.com", 21),
+  new Student(1, "Frank", "Mellberg", "frank@isObject.com", 21),
+  new Student(2, "Rio", "Ferdinand", "rio@isObject.com", 25),
+  new Student(3, "Nemanja", "Vidic", "nemanja@isObject.com", 32),
+  new Student(4, "Fredrik", "ljungberg", "fredrik@isObject.com", 32),
+  new Student(5, "Lotta", "Schelin", "lotta@isObject.com", 21),
+  new Student(6, "Stina", "Olofsson", "sina@isObject.com", 21),
 ]

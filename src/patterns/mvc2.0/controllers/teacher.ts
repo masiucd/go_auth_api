@@ -1,9 +1,9 @@
 import { ListView } from "../views/list-view"
-import { loadTeachers } from "../models/teacher"
+import { loadTeachers, Teacher } from "../models/teacher"
 
 export class TeacherController {
   parentElement: HTMLDivElement
-  teachersView: ListView
+  teachersView: ListView<Teacher>
   constructor(parentElement: HTMLDivElement) {
     this.parentElement = parentElement
     this.teachersView = new ListView(this.parentElement, loadTeachers(), "Teachers", [

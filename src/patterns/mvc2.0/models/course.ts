@@ -2,11 +2,11 @@ import { nanoid } from "nanoid"
 import { DisplayInfo } from "../types"
 
 export class Course {
-  id: string
+  id: number
   title: string
   description: string
   duration: string
-  constructor(id: string, title: string, description: string, duration: string) {
+  constructor(id: number, title: string, description: string, duration: string) {
     this.id = id
     this.title = title
     this.description = description
@@ -21,8 +21,8 @@ export class Course {
 }
 
 export const loadCourses = () => [
-  new Course(nanoid(), "math", "math is wonderful", "6h"),
-  new Course(nanoid(), "history", "history is good for you", "3h"),
-  new Course(nanoid(), "swedish", "without swedish you will face some serious problems", "2h"),
-  new Course(nanoid(), "english", "the global language, learn it NOW!!!", "5h"),
+  new Course(1, "math", "math is wonderful", "6h"),
+  new Course(2, "history", "history is good for you", "3h"),
+  new Course(3, "swedish", "without swedish you will face some serious problems", "2h"),
+  new Course(4, "english", "the global language, learn it NOW!!!", "5h"),
 ]

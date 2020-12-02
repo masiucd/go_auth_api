@@ -4,7 +4,7 @@ import { nanoid } from "nanoid"
 
 export class Teacher extends Person implements TeacherStudentConstruct {
   subjects: Subject[]
-  constructor(id: string, firstName: string, lastName: string, email: string, age: number) {
+  constructor(id: number, firstName: string, lastName: string, email: string, age: number) {
     super(id, firstName, lastName, email, age)
     this.subjects = []
   }
@@ -19,8 +19,8 @@ export class Teacher extends Person implements TeacherStudentConstruct {
 }
 
 export const loadTeachers = () => [
-  new Teacher(nanoid(), "Frank", "Smith", "frank@io.com", 43),
-  new Teacher(nanoid(), "Logan", "Jonsson", "logan@io.com", 47),
-  new Teacher(nanoid(), "Mia", "Greger", "mia@io.com", 41),
-  new Teacher(nanoid(), "Boris", "Rooney", "frank@io.com", 53),
+  new Teacher(1, "Frank", "Smith", "frank@io.com", 43),
+  new Teacher(2, "Logan", "Jonsson", "logan@io.com", 47),
+  new Teacher(3, "Mia", "Greger", "mia@io.com", 41),
+  new Teacher(4, "Boris", "Rooney", "frank@io.com", 53),
 ]
