@@ -1,4 +1,3 @@
-import { isObject } from "lodash"
 import { nanoid } from "nanoid"
 import { Person } from "./Person"
 

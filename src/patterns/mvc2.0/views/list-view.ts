@@ -19,16 +19,10 @@ export class ListView {
   }
 
   clickHandler(subscriber: Function) {
-    const parentElementId = this.parentElement.getAttribute("id")
-    console.log(parentElementId)
-    console.log("hello world")
-    console.log(subscriber)
     console.log(document.querySelectorAll("tr"))
-    const table = document.querySelector(".table-wrapper table")?.firstChild
     const trs = document.querySelectorAll("tr")
     trs.forEach(tr =>
       tr.addEventListener("click", () => {
-        console.log(tr.dataset.id)
         subscriber(tr.dataset.id)
       })
     )
