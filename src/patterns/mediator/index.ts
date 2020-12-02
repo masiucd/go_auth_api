@@ -1,4 +1,4 @@
-class Chatroom {
+export class Chatroom {
   participants: Record<string, Participant>
   constructor() {
     this.participants = {}
@@ -22,7 +22,7 @@ class Chatroom {
   }
 }
 
-class Participant {
+export class Participant {
   name: string
   chatroom: null | Chatroom
   constructor(name: string) {
@@ -37,15 +37,15 @@ class Participant {
   }
 }
 
-const bob = new Participant("bob")
-const greg = new Participant("greg")
-const mia = new Participant("mia")
+// const bob = new Participant("bob")
+// const greg = new Participant("greg")
+// const mia = new Participant("mia")
 
-const chat = new Chatroom()
+// const chat = new Chatroom()
 
-chat.register(bob)
-chat.register(greg)
-chat.register(mia)
+// chat.register(bob)
+// chat.register(greg)
+// chat.register(mia)
 
-bob.send("hello greg", greg)
-bob.send("hello everyone")
+// bob.send("hello greg", greg)
+// bob.send("hello everyone")
