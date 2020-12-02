@@ -1,72 +1,51 @@
-interface IMessage {
-  inspection: boolean
-  message: string
-  email: string
-}
-
-interface IColleague {
-  canHandle: (message: IMessage) => any
-  handle: (message: IMessage) => any
-}
-
-class Mediator {
-  colleagues: Colleague[]
+class Chatroom {
+  participants: Record<string, Participant>
   constructor() {
-    this.colleagues = []
+    this.participants = {}
   }
 
-  register(colleague: Colleague) {
-    this.colleagues.push(colleague)
+  register(participant: Participant) {
+    this.participants[participant.name] = participant
+    participant.chatroom = this
   }
 
-  isValidColleague(colleague: Colleague) {
-    return typeof colleague.canHandle === "function" && typeof colleague.handle === "function"
-  }
-
-  send(message: any) {
-    for (let colleague of this.colleagues) {
-      if (colleague.canHandle(message)) {
-        return colleague.handle(message)
-      }
+  send(message: string, from: Participant, to?: Participant) {
+    if (to) {
+      to.receive(message, from)
+    } else {
+      Object.keys(this.participants).forEach(key => {
+        if (this.participants[key] !== from) {
+          this.participants[key].receive(message, from)
+        }
+      })
     }
   }
 }
 
-class Colleague implements IColleague {
-  canHandle(message: IMessage): any {}
-  handle(message: IMessage): any {}
-}
-
-class InspectionColleague extends Colleague {
-  canHandle(message: IMessage) {
-    const { inspection } = message
-    return inspection === undefined ? false : true
+class Participant {
+  name: string
+  chatroom: null | Chatroom
+  constructor(name: string) {
+    this.name = name
+    this.chatroom = null
   }
-  handle(message: IMessage) {
-    console.log("send to inspection" + message.message)
+  send(message: string, to?: Participant) {
+    this.chatroom?.send(message, this, to)
   }
-}
-
-class CustomerConfirmationColleague extends Colleague {
-  canHandle(message: IMessage) {
-    const { email } = message
-    return email === undefined ? false : true
-  }
-  handle(message: IMessage) {
-    console.log(`Customer confirmation ${message.message}`)
+  receive(message: string, from: Participant) {
+    console.log(`${message} - From ${from.name}`)
   }
 }
 
-function init() {
-  //singleton
-  const mediator = new Mediator()
-  const inspection = new InspectionColleague()
-  const customer = new CustomerConfirmationColleague()
+const bob = new Participant("bob")
+const greg = new Participant("greg")
+const mia = new Participant("mia")
 
-  mediator.register(inspection)
-  mediator.register(customer)
+const chat = new Chatroom()
 
-  mediator.send({ inspection: true, message: "to inspection" })
-  mediator.send({ email: "foo@io.com", message: "we have received your confirmation" })
-}
-// init()
+chat.register(bob)
+chat.register(greg)
+chat.register(mia)
+
+bob.send("hello greg", greg)
+bob.send("hello everyone")
