@@ -1,9 +1,12 @@
 import { nanoid } from "nanoid"
+import { StudentMediator } from "./mediator"
 import { Person } from "./Person"
 
-export class Student extends Person {
+class Student extends Person {
+  studentMediator: null | StudentMediator
   constructor(id: number, firstName: string, lastName: string, email: string, age: number) {
     super(id, firstName, lastName, email, age)
+    this.studentMediator = null
   }
   displayInfo() {
     return {
@@ -14,7 +17,10 @@ export class Student extends Person {
   }
 }
 
-export const loadStudents = () => [
+const studentMediator = new StudentMediator()
+studentMediator.registerStudent
+
+const loadStudents = () => [
   new Student(1, "Frank", "Mellberg", "frank@isObject.com", 21),
   new Student(2, "Rio", "Ferdinand", "rio@isObject.com", 25),
   new Student(3, "Nemanja", "Vidic", "nemanja@isObject.com", 32),
@@ -22,3 +28,5 @@ export const loadStudents = () => [
   new Student(5, "Lotta", "Schelin", "lotta@isObject.com", 21),
   new Student(6, "Stina", "Olofsson", "sina@isObject.com", 21),
 ]
+
+export { Student, loadStudents, studentMediator }

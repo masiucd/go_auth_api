@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid"
+import { CourseMediator } from "./mediator"
 import { DisplayInfo } from "../types"
 
 export class Course {
@@ -6,12 +6,15 @@ export class Course {
   title: string
   description: string
   duration: string
+  courseMediator: null | CourseMediator
   constructor(id: number, title: string, description: string, duration: string) {
     this.id = id
     this.title = title
     this.description = description
     this.duration = duration
+    this.courseMediator = null
   }
+
   displayInfo(): DisplayInfo {
     return {
       title: this.title,

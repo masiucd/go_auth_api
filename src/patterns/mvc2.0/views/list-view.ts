@@ -31,7 +31,7 @@ export class ListView<T> {
   private render(): void {
     const html = `
     <div class="table-wrapper wrapper-${this.title}">
-    <table>
+    <table class="${this.title}">
         <caption>${this.title}</caption>
         <thead>
           ${this.subTitles.map(t => `<th>${t}</th>`).join("")}

@@ -18,7 +18,7 @@ export class StudentController {
   handleClickStudent(): void {
     this.studentsView.clickHandler((id: number) => {
       const student = loadStudents().find(student => student.id === id)
-      const data = student!
+      const data = student! as Student
       const courses = loadCourses()
       const modal = document.querySelector(".modal-list") as HTMLDivElement
       new CoursesModalView<any[], Student>(modal, courses, data, "courses", [

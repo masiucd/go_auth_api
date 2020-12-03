@@ -5,14 +5,14 @@ import { ListView } from "./list-view"
 export class ModalView<T, S> {
   parentElement: HTMLDivElement
   list: Array<any>
-  data: S
+  data: Student | Teacher
   title: string
   listView: ListView<T>
   subTitles: string[]
   constructor(
     parentElement: HTMLDivElement,
     list: any,
-    data: S,
+    data: Student | Teacher,
     title: string,
     subTitles: string[]
   ) {
@@ -42,5 +42,13 @@ export class ModalView<T, S> {
       modalWrapper.classList.remove("show-modal")
     })
     console.log(this.listView)
+    // console.log(document.querySelector(".modal"))
+    const trs = document.querySelectorAll(".modal tbody tr").forEach((tr: any) => {
+      console.log(tr.dataset.id === String(this.data.id))
+      console.log("tr.dataset.id", tr.dataset.id)
+    })
+    console.log("trs", trs)
+    // console.log("trs", trs)
+    // const xs = Array.from(trs)
   }
 }
