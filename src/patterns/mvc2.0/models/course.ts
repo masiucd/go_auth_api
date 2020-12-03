@@ -1,7 +1,6 @@
 import { CourseMediator } from "./mediator"
 import { DisplayInfo } from "../types"
-
-export class Course {
+class Course {
   id: number
   title: string
   description: string
@@ -21,11 +20,23 @@ export class Course {
       duration: this.duration,
     }
   }
+  send() {}
+  receive() {}
 }
 
-export const loadCourses = (): Course[] => [
+const courseMediator = new CourseMediator()
+
+const loadCourses = (): Course[] => [
   new Course(1, "math", "math is wonderful", "6h"),
   new Course(2, "history", "history is good for you", "3h"),
   new Course(3, "swedish", "without swedish you will face some serious problems", "2h"),
   new Course(4, "english", "the global language, learn it NOW!!!", "5h"),
 ]
+
+const registerCourses = () => {
+  for (let course of loadCourses()) {
+    courseMediator.registerCourse(course)
+  }
+}
+
+export { Course, loadCourses, registerCourses }

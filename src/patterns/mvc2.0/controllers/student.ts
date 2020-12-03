@@ -32,6 +32,6 @@ export class StudentController {
     this.studentsView.init()
     this.handleClickStudent()
     registerAllStudents()
-    console.log("studentMediator", studentMediator)
+    // console.log("studentMediator", studentMediator) //for testing!
   }
 }
