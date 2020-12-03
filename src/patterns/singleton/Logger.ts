@@ -37,5 +37,5 @@ class Logger {
 }
 
 const logger = new Logger()
-Object.freeze(logger)
+// Object.freeze(logger)
 export { logger }

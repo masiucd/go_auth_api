@@ -4,17 +4,17 @@ import { StudentController } from "./student"
 
 export class App {
   teacher: TeacherController
-  courses: CourseController
+  // courses: CourseController
   students: StudentController
-  constructor(teacher: TeacherController, courses: CourseController, students: StudentController) {
+  constructor(teacher: TeacherController, students: StudentController) {
     this.teacher = teacher
-    this.courses = courses
+    // this.courses = courses
     this.students = students
   }
 
   render(): void {
     this.teacher.init()
-    this.courses.init()
+    // this.courses.init()
     this.students.init()
   }
 }
