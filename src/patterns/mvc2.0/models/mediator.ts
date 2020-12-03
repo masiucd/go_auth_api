@@ -12,7 +12,7 @@ class StudentMediator {
     student.studentMediator = this
   }
 
-  send(message: string, from: Course | Student, to: Course | Student) {
+  send(message: string, from: Student, to?: Student) {
     //
   }
 }
@@ -22,12 +22,12 @@ class CourseMediator {
     this.courses = {}
   }
 
-  registerStudent(course: Course) {
+  registerCourse(course: Course) {
     this.courses[course.title] = course
     course.courseMediator = this
   }
 
-  send(message: string, from: Course | Student, to: Course | Student) {
+  send(message: string, from: Course, to?: Course) {
     //
   }
 }

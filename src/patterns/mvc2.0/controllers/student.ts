@@ -1,4 +1,4 @@
-import { loadStudents, Student } from "../models/student"
+import { loadStudents, Student, registerAllStudents, studentMediator } from "../models/student"
 import { ListView } from "../views/list-view"
 import { ModalView as CoursesModalView } from "../views/modal-view"
 import { loadCourses } from "../models/course"
@@ -31,5 +31,7 @@ export class StudentController {
   init(): void {
     this.studentsView.init()
     this.handleClickStudent()
+    registerAllStudents()
+    // console.log("studentMediator", studentMediator) //for testing!
   }
 }
