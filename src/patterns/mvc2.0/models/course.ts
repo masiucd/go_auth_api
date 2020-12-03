@@ -20,7 +20,7 @@ export class Course {
   }
 }
 
-export const loadCourses = () => [
+export const loadCourses = (): Course[] => [
   new Course(1, "math", "math is wonderful", "6h"),
   new Course(2, "history", "history is good for you", "3h"),
   new Course(3, "swedish", "without swedish you will face some serious problems", "2h"),

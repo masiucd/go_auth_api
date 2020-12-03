@@ -1,7 +1,7 @@
 import { loadStudents, Student } from "../models/student"
-import { Item } from "../views/item-view"
 import { ListView } from "../views/list-view"
-import { ModalView } from "../views/modal-view"
+import { ModalView as CoursesModalView } from "../views/modal-view"
+import { loadCourses } from "../models/course"
 
 export class StudentController {
   parentElement: HTMLDivElement
@@ -15,18 +15,21 @@ export class StudentController {
     ])
   }
 
-  handleAddStudent(): void {
+  handleClickStudent(): void {
     this.studentsView.clickHandler((id: number) => {
       const student = loadStudents().find(student => student.id === id)
       const data = student!
-      new ModalView<any, Student>([], data).render()
-      // const newStudentItem = new Item(this.parentElement, data!)
-      // newStudentItem.render()
+      const courses = loadCourses()
+      const modal = document.querySelector(".modal-list") as HTMLDivElement
+      new CoursesModalView<any[], Student>(modal, courses, data, "courses", [
+        "title",
+        "duration",
+      ]).render()
     })
   }
 
   init(): void {
     this.studentsView.init()
-    this.handleAddStudent()
+    this.handleClickStudent()
   }
 }
