@@ -30,8 +30,6 @@ const loadStudents = () => [
   new Student(2, "Rio", "Ferdinand", "rio@io.com", 25),
   new Student(3, "Nemanja", "Vidic", "nemanja@io.com", 32),
   new Student(4, "Fredrik", "ljungberg", "fredrik@io.com", 32),
-  new Student(5, "Lotta", "Schelin", "lotta@io.com", 21),
-  new Student(6, "Stina", "Olofsson", "sina@io.com", 21),
 ]
 
 const registerAllStudents = (): void => {

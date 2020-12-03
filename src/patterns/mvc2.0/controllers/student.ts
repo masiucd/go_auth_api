@@ -19,6 +19,7 @@ export class StudentController {
     this.studentsView.clickHandler((id: number) => {
       const student = loadStudents().find(student => student.id === id)
       const data = student! as Student
+      console.log("data", data)
       const courses = loadCourses()
       const modal = document.querySelector(".modal-list") as HTMLDivElement
       new CoursesModalView<any[], Student>(modal, courses, data, "courses", [
@@ -32,6 +33,6 @@ export class StudentController {
     this.studentsView.init()
     this.handleClickStudent()
     registerAllStudents()
-    // console.log("studentMediator", studentMediator) //for testing!
+    console.log("studentMediator", studentMediator) //!for testing!
   }
 }
