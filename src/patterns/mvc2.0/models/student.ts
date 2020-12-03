@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid"
 import { StudentMediator } from "./mediator"
 import { Person } from "./Person"
 
@@ -18,7 +17,6 @@ class Student extends Person {
 }
 
 const studentMediator = new StudentMediator()
-studentMediator.registerStudent
 
 const loadStudents = () => [
   new Student(1, "Frank", "Mellberg", "frank@isObject.com", 21),
@@ -29,4 +27,10 @@ const loadStudents = () => [
   new Student(6, "Stina", "Olofsson", "sina@isObject.com", 21),
 ]
 
-export { Student, loadStudents, studentMediator }
+const registerAllStudents = (): void => {
+  for (let student of loadStudents()) {
+    studentMediator.registerStudent(student)
+  }
+}
+
+export { Student, loadStudents, studentMediator, registerAllStudents }
