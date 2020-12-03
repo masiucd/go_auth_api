@@ -13,7 +13,15 @@ class StudentMediator {
   }
 
   send(message: string, from: Student, to?: Student) {
-    //
+    if (to) {
+      to.receive(message, from)
+    } else {
+      Object.keys(this.students).forEach(key => {
+        if (this.students[key] !== from) {
+          this.students[key].receive(message, from)
+        }
+      })
+    }
   }
 }
 class CourseMediator {

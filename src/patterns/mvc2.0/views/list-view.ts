@@ -37,13 +37,13 @@ export class ListView<T> {
           ${this.subTitles.map(t => `<th>${t}</th>`).join("")}
         </thead>
         <tbody>
-          ${(this.dataList as Array<any>)
+          ${(this.dataList as Array<T>)
             .map((data: any) => {
               const displayInfo = data.displayInfo() as { [key: string]: string }
               return `
                 <tr data-id="${data.id}">
                 ${Object.keys(displayInfo)
-                  .map(key => `<td>${displayInfo[key]}</td>`)
+                  .map(key => `<td data-info="${displayInfo[key]}">${displayInfo[key]}</td>`)
                   .join("")}
                 </tr>
           `

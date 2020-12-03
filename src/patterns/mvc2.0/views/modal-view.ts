@@ -41,14 +41,25 @@ export class ModalView<T, S> {
     document.querySelector(".close-modal")?.addEventListener("click", () => {
       modalWrapper.classList.remove("show-modal")
     })
-    console.log(this.listView)
-    // console.log(document.querySelector(".modal"))
+
     const trs = document.querySelectorAll(".modal tbody tr").forEach((tr: any) => {
-      console.log(tr.dataset.id === String(this.data.id))
-      console.log("tr.dataset.id", tr.dataset.id)
+      tr.addEventListener("click", (event: any) => {
+        console.log(event.target)
+        console.log(event.target.innerText)
+        if (tr.dataset.id === String(this.data.id)) {
+          if ("send" in this.data) {
+            this.data.send(`I am no registered to ${event.target.innerText}`)
+          }
+        }
+      })
+      // if (tr.dataset.id === String(this.data.id)) {
+      // }
+
+      // if (tr.dataset.id === String(this.data.id)) {
+      //   if ("send" in this.data) {
+      //     this.data.send("I am no registered")
+      //   }
+      // }
     })
-    console.log("trs", trs)
-    // console.log("trs", trs)
-    // const xs = Array.from(trs)
   }
 }
