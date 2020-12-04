@@ -10,7 +10,7 @@ export class ListView<T> {
     parentElement: HTMLDivElement,
     dataList: Array<T>,
     title: string,
-    subTitles: string[]
+    subTitles: string[],
   ) {
     this.parentElement = parentElement
     this.dataList = dataList
@@ -24,7 +24,7 @@ export class ListView<T> {
       tr.addEventListener("click", () => {
         subscriber(parseInt(tr.dataset.id!, 10))
         sessionStorage.setItem("user", String(tr.dataset.id))
-      })
+      }),
     )
   }
 

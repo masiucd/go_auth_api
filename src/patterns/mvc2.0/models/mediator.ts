@@ -1,17 +1,20 @@
+import { Admin, loadAdmin } from "./admin"
 import { Course } from "./course"
 import { Student } from "./student"
 
 class AdminMediator {
   students: Record<string, Student>
+  admin: Admin
   constructor() {
     this.students = {}
+    this.admin = loadAdmin()
   }
   registerStudent(student: Student) {
     this.students[student.firstName] = student
     student.adminMediator = this
   }
 
-  send(message: string, from: Student, to?: Student) {
+  send(message: string, from: Student, to?: Student, admin?: Admin) {
     if (to) {
       to.receive(message, from)
     } else {

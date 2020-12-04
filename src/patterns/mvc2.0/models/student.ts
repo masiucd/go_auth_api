@@ -24,8 +24,6 @@ class Student extends Person {
 
 const adminMediator = new AdminMediator()
 
-console.log("adminMediator", adminMediator)
-
 const loadStudents = () => [
   new Student(1, "Frank", "Mellberg", "frank@io.com", 21),
   new Student(2, "Rio", "Ferdinand", "rio@io.com", 25),
@@ -33,7 +31,6 @@ const loadStudents = () => [
   new Student(4, "Fredrik", "ljungberg", "fredrik@io.com", 32),
 ]
 
-console.log(loadStudents()[0].send("hello"))
 const registerAllStudents = (): void => {
   for (let student of loadStudents()) {
     adminMediator.registerStudent(student)

@@ -7,7 +7,6 @@ import { ProfileView } from "../views/profile-view"
 export class StudentController {
   parentElement: HTMLDivElement
   studentsView: ListView<Student>
-  profileView: ProfileView
   constructor(parentElement: HTMLDivElement) {
     this.parentElement = parentElement
     this.studentsView = new ListView(this.parentElement, loadStudents(), "Students", [
@@ -15,14 +14,12 @@ export class StudentController {
       "email",
       "age",
     ])
-    this.profileView = new ProfileView()
   }
 
   handleClickStudent(): void {
     this.studentsView.clickHandler((id: number) => {
       const student = loadStudents().find(student => student.id === id)
       const data = student! as Student
-      console.log("data", data)
       const courses = loadCourses()
       const modal = document.querySelector(".modal-list") as HTMLDivElement
       new CoursesModalView<any[], Student>(modal, courses, data, "courses", [
@@ -33,13 +30,20 @@ export class StudentController {
   }
 
   handleShowProfile(): void {
-    //
+    // this.profileView.clickHandler((id: number) => {
+    //   const student = loadStudents().find(student => student.id === id)
+    //   const data = student! as Student
+    //   const courses = loadCourses()
+    //   const modal = document.querySelector(".modal-list") as HTMLDivElement
+    //   console.log("modal", modal)
+    // })
   }
 
   init(): void {
     this.studentsView.init()
     this.handleClickStudent()
     registerAllStudents()
-    console.log("adminMediator", adminMediator) //!for testing!
+    this.handleShowProfile()
+    // console.log("adminMediator", adminMediator) //!for testing!
   }
 }
