@@ -1,8 +1,9 @@
+import { Admin, loadAdmin } from "../models/admin"
 import { Student } from "../models/student"
 import { Teacher } from "../models/teacher"
 import { ListView } from "./list-view"
 
-export class ModalView<T, S> {
+export class ModalView<T> {
   parentElement: HTMLDivElement
   list: Array<any>
   data: Student | Teacher
@@ -10,6 +11,8 @@ export class ModalView<T, S> {
   listView: ListView<T>
   subTitles: string[]
   confirmationText: string
+  admin: Admin
+
   constructor(
     parentElement: HTMLDivElement,
     list: any,
@@ -24,6 +27,7 @@ export class ModalView<T, S> {
     this.subTitles = subTitles
     this.listView = new ListView(this.parentElement, this.list, this.title, this.subTitles)
     this.confirmationText = ""
+    this.admin = loadAdmin()
   }
 
   updateText(text: string) {
@@ -55,18 +59,10 @@ export class ModalView<T, S> {
       tr.addEventListener("click", (event: any) => {
         if ("send" in this.data) {
           const confirmationText = `You have now been registered to the ${event.target.innerText} Course`
-          this.data.send(confirmationText, this.data) // sending to yourself
+          this.data.send(confirmationText, this.data, this.admin) // sending from this student, to itself and to admin
           this.updateText(confirmationText)
           this.updateHtml()
         }
-
-        // if (tr.dataset.id === String(this.data.id)) {
-        //   if ("send" in this.data) {
-        //     const confirmationText = `You have now been registered to ${event.target.innerText}`
-        //     this.data.send(confirmationText, this.data)
-        //     this.updateText(confirmationText)
-        //   }
-        // }
       })
     })
   }

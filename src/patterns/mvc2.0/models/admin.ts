@@ -17,8 +17,8 @@ class Admin {
     }
     return Admin.instance
   }
-  receive(course: Course, from: Student): string {
-    const studentRegistredForCourseMessage = `Student ${from.firstName} has been registered for the course ${course.title}`
+  receive(message: string, from: Student): string {
+    const studentRegistredForCourseMessage = `Student ${from.firstName} ${message}`
     console.log(studentRegistredForCourseMessage)
     return studentRegistredForCourseMessage
   }

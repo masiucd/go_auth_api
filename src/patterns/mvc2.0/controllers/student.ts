@@ -22,10 +22,7 @@ export class StudentController {
       const data = student! as Student
       const courses = loadCourses()
       const modal = document.querySelector(".modal-list") as HTMLDivElement
-      new CoursesModalView<any[], Student>(modal, courses, data, "courses", [
-        "title",
-        "duration",
-      ]).render()
+      new CoursesModalView<any[]>(modal, courses, data, "courses", ["title", "duration"]).render()
     })
   }
 

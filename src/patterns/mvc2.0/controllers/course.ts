@@ -1,5 +1,5 @@
 import { ListView } from "../views/list-view"
-import { Course, loadCourses, registerCourses } from "../models/course"
+import { Course, loadCourses } from "../models/course"
 
 export class CourseController {
   parentElement: HTMLDivElement
@@ -14,6 +14,5 @@ export class CourseController {
 
   init(): void {
     this.coursesView.init()
-    registerCourses()
   }
 }

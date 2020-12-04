@@ -1,3 +1,4 @@
+import { Admin } from "./admin"
 import { AdminMediator } from "./mediator"
 import { Person } from "./Person"
 
@@ -14,8 +15,8 @@ class Student extends Person {
       age: `${this.age}`,
     }
   }
-  send(message: string, to?: Student) {
-    this.adminMediator?.send(message, this, to)
+  send(message: string, to?: Student, admin?: Admin) {
+    this.adminMediator?.send(message, this, to, admin)
   }
   receive(message: string, from: Student): string {
     return `${message} - from ${from}`

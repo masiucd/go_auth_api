@@ -15,8 +15,9 @@ class AdminMediator {
   }
 
   send(message: string, from: Student, to?: Student, admin?: Admin) {
-    if (to) {
+    if (to && admin) {
       to.receive(message, from)
+      admin?.receive(message, from)
     } else {
       Object.keys(this.students).forEach(key => {
         if (this.students[key] !== from) {
@@ -50,20 +51,20 @@ class AdminMediator {
 //     }
 //   }
 // }
-class CourseMediator {
-  courses: Record<string, Course>
-  constructor() {
-    this.courses = {}
-  }
+// class CourseMediator {
+//   courses: Record<string, Course>
+//   constructor() {
+//     this.courses = {}
+//   }
 
-  registerCourse(course: Course) {
-    this.courses[course.title] = course
-    course.courseMediator = this
-  }
+//   registerCourse(course: Course) {
+//     this.courses[course.title] = course
+//     course.courseMediator = this
+//   }
 
-  send(message: string, from: Course, to?: Course) {
-    //
-  }
-}
+//   send(message: string, from: Course, to?: Course) {
+//     //
+//   }
+// }
 
-export { CourseMediator, AdminMediator }
+export { AdminMediator }
