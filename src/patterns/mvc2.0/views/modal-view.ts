@@ -15,7 +15,7 @@ export class ModalView<T, S> {
     list: any,
     data: Student | Teacher,
     title: string,
-    subTitles: string[]
+    subTitles: string[],
   ) {
     this.parentElement = parentElement
     this.list = list
@@ -48,13 +48,14 @@ export class ModalView<T, S> {
     modalWrapper.innerHTML = html
     document.querySelector(".close-modal")?.addEventListener("click", () => {
       modalWrapper.classList.remove("show-modal")
+      modalWrapper.innerHTML = ""
     })
 
     document.querySelectorAll(".modal tbody tr").forEach((tr: any) => {
       tr.addEventListener("click", (event: any) => {
         if ("send" in this.data) {
           const confirmationText = `You have now been registered to the ${event.target.innerText} Course`
-          this.data.send(confirmationText, this.data)
+          this.data.send(confirmationText, this.data) // sending to yourself
           this.updateText(confirmationText)
           this.updateHtml()
         }

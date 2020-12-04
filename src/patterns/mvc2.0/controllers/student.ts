@@ -1,11 +1,13 @@
-import { loadStudents, Student, registerAllStudents, studentMediator } from "../models/student"
+import { loadStudents, Student, registerAllStudents, adminMediator } from "../models/student"
 import { ListView } from "../views/list-view"
 import { ModalView as CoursesModalView } from "../views/modal-view"
 import { loadCourses } from "../models/course"
+import { ProfileView } from "../views/profile-view"
 
 export class StudentController {
   parentElement: HTMLDivElement
   studentsView: ListView<Student>
+  profileView: ProfileView
   constructor(parentElement: HTMLDivElement) {
     this.parentElement = parentElement
     this.studentsView = new ListView(this.parentElement, loadStudents(), "Students", [
@@ -13,6 +15,7 @@ export class StudentController {
       "email",
       "age",
     ])
+    this.profileView = new ProfileView()
   }
 
   handleClickStudent(): void {
@@ -29,10 +32,14 @@ export class StudentController {
     })
   }
 
+  handleShowProfile(): void {
+    //
+  }
+
   init(): void {
     this.studentsView.init()
     this.handleClickStudent()
     registerAllStudents()
-    console.log("studentMediator", studentMediator) //!for testing!
+    console.log("adminMediator", adminMediator) //!for testing!
   }
 }

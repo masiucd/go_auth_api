@@ -1,12 +1,11 @@
-import { Course } from "./course"
-import { StudentMediator } from "./mediator"
+import { AdminMediator } from "./mediator"
 import { Person } from "./Person"
 
 class Student extends Person {
-  studentMediator: null | StudentMediator
+  adminMediator: null | AdminMediator
   constructor(id: number, firstName: string, lastName: string, email: string, age: number) {
     super(id, firstName, lastName, email, age)
-    this.studentMediator = null
+    this.adminMediator = null
   }
   displayInfo() {
     return {
@@ -16,14 +15,16 @@ class Student extends Person {
     }
   }
   send(message: string, to?: Student) {
-    this.studentMediator?.send(message, this, to)
+    this.adminMediator?.send(message, this, to)
   }
   receive(message: string, from: Student): string {
     return `${message} - from ${from}`
   }
 }
 
-const studentMediator = new StudentMediator()
+const adminMediator = new AdminMediator()
+
+console.log("adminMediator", adminMediator)
 
 const loadStudents = () => [
   new Student(1, "Frank", "Mellberg", "frank@io.com", 21),
@@ -32,10 +33,11 @@ const loadStudents = () => [
   new Student(4, "Fredrik", "ljungberg", "fredrik@io.com", 32),
 ]
 
+console.log(loadStudents()[0].send("hello"))
 const registerAllStudents = (): void => {
   for (let student of loadStudents()) {
-    studentMediator.registerStudent(student)
+    adminMediator.registerStudent(student)
   }
 }
 
-export { Student, loadStudents, studentMediator, registerAllStudents }
+export { Student, loadStudents, adminMediator, registerAllStudents }

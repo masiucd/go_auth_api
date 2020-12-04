@@ -1,15 +1,14 @@
 import { Course } from "./course"
 import { Student } from "./student"
 
-class StudentMediator {
+class AdminMediator {
   students: Record<string, Student>
   constructor() {
     this.students = {}
   }
-
   registerStudent(student: Student) {
     this.students[student.firstName] = student
-    student.studentMediator = this
+    student.adminMediator = this
   }
 
   send(message: string, from: Student, to?: Student) {
@@ -24,6 +23,30 @@ class StudentMediator {
     }
   }
 }
+
+// class StudentMediator {
+//   students: Record<string, Student>
+//   constructor() {
+//     this.students = {}
+//   }
+
+//   registerStudent(student: Student) {
+//     this.students[student.firstName] = student
+//     student.adminMediator = this
+//   }
+
+//   send(message: string, from: Student, to?: Student) {
+//     if (to) {
+//       to.receive(message, from)
+//     } else {
+//       Object.keys(this.students).forEach(key => {
+//         if (this.students[key] !== from) {
+//           this.students[key].receive(message, from)
+//         }
+//       })
+//     }
+//   }
+// }
 class CourseMediator {
   courses: Record<string, Course>
   constructor() {
@@ -40,4 +63,4 @@ class CourseMediator {
   }
 }
 
-export { StudentMediator, CourseMediator }
+export { CourseMediator, AdminMediator }
