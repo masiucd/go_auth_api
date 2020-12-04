@@ -241,6 +241,10 @@ it should notify all the objects that the updated object has been updated.
 
 ## Mediator <a name = "mediator"></a>
 
+The Mediator pattern is another common and very useful pattern to take advantage of.
+The `Mediator` introducing a one-to-many flow between objects.
+One good example of where you can see where the `Mediator` pattern is used is the `DOM` itself, I thinking about the root `Document`.
+
 ## Tools <a name = "tools"></a>
 
 - Typescript
