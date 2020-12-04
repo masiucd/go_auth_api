@@ -1,21 +1,24 @@
 import { Course } from "../../mvc/models/course-model"
 import { Teacher } from "../models/teacher"
-
+import { WhatModelType } from "../types"
 export class ListView<T> {
   parentElement: HTMLDivElement
   dataList: Array<T>
   title: string
   subTitles: string[]
+  type: WhatModelType // student ore teacher
   constructor(
     parentElement: HTMLDivElement,
     dataList: Array<T>,
     title: string,
     subTitles: string[],
+    type: WhatModelType,
   ) {
     this.parentElement = parentElement
     this.dataList = dataList
     this.title = title
     this.subTitles = subTitles
+    this.type = type
   }
 
   clickHandler(subscriber: Function) {
@@ -23,7 +26,7 @@ export class ListView<T> {
     trs.forEach(tr =>
       tr.addEventListener("click", () => {
         subscriber(parseInt(tr.dataset.id!, 10))
-        sessionStorage.setItem("user", String(tr.dataset.id))
+        // sessionStorage.setItem("user", String(tr.dataset.id))
       }),
     )
   }
@@ -41,7 +44,13 @@ export class ListView<T> {
             .map((data: any) => {
               const displayInfo = data.displayInfo() as { [key: string]: string }
               return `
-                <tr data-id="${data.id}">
+                <tr data-id="${data.id}" id="${
+                this.type === "student"
+                  ? `student-${data.id}`
+                  : this.type === "course"
+                  ? `course-${data.id}`
+                  : `teacher-${data.id}`
+              }">
                 ${Object.keys(displayInfo)
                   .map(key => `<td data-info="${displayInfo[key]}">${displayInfo[key]}</td>`)
                   .join("")}

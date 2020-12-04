@@ -9,11 +9,13 @@ export class StudentController {
   studentsView: ListView<Student>
   constructor(parentElement: HTMLDivElement) {
     this.parentElement = parentElement
-    this.studentsView = new ListView(this.parentElement, loadStudents(), "Students", [
-      "name",
-      "email",
-      "age",
-    ])
+    this.studentsView = new ListView(
+      this.parentElement,
+      loadStudents(),
+      "Students",
+      ["name", "email", "age"],
+      "student",
+    )
   }
 
   handleClickStudent(): void {

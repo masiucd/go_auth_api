@@ -25,7 +25,13 @@ export class ModalView<T> {
     this.data = data
     this.title = title
     this.subTitles = subTitles
-    this.listView = new ListView(this.parentElement, this.list, this.title, this.subTitles)
+    this.listView = new ListView(
+      this.parentElement,
+      this.list,
+      this.title,
+      this.subTitles,
+      "student",
+    )
     this.confirmationText = ""
     this.admin = loadAdmin()
   }

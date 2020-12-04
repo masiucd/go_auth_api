@@ -6,11 +6,13 @@ export class TeacherController {
   teachersView: ListView<Teacher>
   constructor(parentElement: HTMLDivElement) {
     this.parentElement = parentElement
-    this.teachersView = new ListView(this.parentElement, loadTeachers(), "Teachers", [
-      "name",
-      "email",
-      "age",
-    ])
+    this.teachersView = new ListView(
+      this.parentElement,
+      loadTeachers(),
+      "Teachers",
+      ["name", "email", "age"],
+      "teacher",
+    )
   }
 
   init(): void {

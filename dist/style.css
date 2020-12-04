@@ -112,6 +112,24 @@ li {
   width: 100%;
 }
 
+.admin-wrapper{
+  margin: 3rem auto;
+  max-width: 24rem;
+  box-shadow: var(--shadowLg);
+  padding: 0.5em;
+}
+
+
+.admin-content{
+  transform: translateY(-1000%);
+  transition: 400ms ease-in-out all;
+}
+
+.show-admin-content{
+  transform: translateY(0);
+}
+
+
 caption {
   font-size: var(--h3);
   text-align: center;
@@ -187,4 +205,18 @@ th {
 .close-modal:hover {
   background: var(--black);
   color: var(--white);
+}
+
+
+.button{
+  padding: .2rem .4rem;
+  font-size: 1.2rem;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--darkBlue);
+  background-color: var(--white);
+  color: var(--black);
+  box-shadow: var(--shadowMd);
+  cursor: pointer;
+  display: block;
+  outline: none;
 }

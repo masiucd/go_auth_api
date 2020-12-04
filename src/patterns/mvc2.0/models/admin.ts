@@ -5,10 +5,12 @@ class Admin {
   private static instance: Admin
   id: number
   name: string
+  slug: string
   isAdmin: boolean
   constructor() {
     this.id = 1
-    this.name = "Mr Alfred"
+    this.name = "Alfred"
+    this.slug = "I am the boss 💰!!!"
     this.isAdmin = true
   }
   static getInstance() {

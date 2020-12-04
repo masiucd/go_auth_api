@@ -6,10 +6,13 @@ export class CourseController {
   coursesView: ListView<Course>
   constructor(parentElement: HTMLDivElement) {
     this.parentElement = parentElement
-    this.coursesView = new ListView(this.parentElement, loadCourses(), "Courses", [
-      "title",
-      "duration",
-    ])
+    this.coursesView = new ListView(
+      this.parentElement,
+      loadCourses(),
+      "Courses",
+      ["title", "duration"],
+      "course",
+    )
   }
 
   init(): void {
