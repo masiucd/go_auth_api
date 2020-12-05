@@ -25,7 +25,10 @@ export class ListView<T> {
     const trs = document.querySelectorAll("tr")
     trs.forEach(tr =>
       tr.addEventListener("click", () => {
-        subscriber(parseInt(tr.dataset.id!, 10))
+        const [type] = tr.id.split("-")
+        if (type === "student") {
+          subscriber(parseInt(tr.dataset.id!, 10))
+        }
         // sessionStorage.setItem("user", String(tr.dataset.id))
       }),
     )
