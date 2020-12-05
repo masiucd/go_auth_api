@@ -8,6 +8,7 @@ class Admin {
   isAdmin: boolean
   private messageBox: string[]
   adminMediator: null | AdminMediator
+
   constructor() {
     this.id = 99
     this.firstName = "Alfred"
@@ -27,6 +28,12 @@ class Admin {
     console.log(studentRegistredForCourseMessage)
     this.messageBox.push(message)
     return studentRegistredForCourseMessage
+  }
+
+  send(message: string) {
+    this.adminMediator?.send(message, this)
+    console.log("x", message)
+    console.log(this.adminMediator)
   }
 
   get messages(): string {

@@ -37,7 +37,6 @@ export class ModalView<T> {
   }
 
   updateText(text: string) {
-    console.log("TEXT", text)
     this.confirmationText = text
   }
 
@@ -65,7 +64,7 @@ export class ModalView<T> {
       tr.addEventListener("click", (event: any) => {
         if ("send" in this.data) {
           const confirmationText = `You have now been registered to the ${event.target.innerText} Course`
-          this.data.send(confirmationText, this.data, this.admin) // sending from this student, to itself and to admin
+          this.data.send(confirmationText) // sending from this student, to itself and to admin
           this.updateText(confirmationText)
           this.updateHtml()
         }

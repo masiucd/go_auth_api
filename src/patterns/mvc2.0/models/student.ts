@@ -15,8 +15,10 @@ class Student extends Person {
       age: `${this.age}`,
     }
   }
-  send(message: string, to?: Student, admin?: Admin) {
-    this.adminMediator?.send(message, this, to, admin)
+  send(message: string) {
+    this.adminMediator?.send(message, this)
+    console.log("x", message)
+    console.log(this.adminMediator)
   }
   receive(message: string, from: Student): string {
     return `${message} - from ${from}`

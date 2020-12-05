@@ -41,8 +41,8 @@ export class StudentController {
   init(): void {
     this.studentsView.init()
     this.handleClickStudent()
-    registerAllStudents()
     this.handleShowProfile()
+    registerAllStudents()
     console.log("adminMediator", adminMediator) //!for testing!
   }
 }
