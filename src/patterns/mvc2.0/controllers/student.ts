@@ -43,6 +43,6 @@ export class StudentController {
     this.handleClickStudent()
     registerAllStudents()
     this.handleShowProfile()
-    // console.log("adminMediator", adminMediator) //!for testing!
+    console.log("adminMediator", adminMediator) //!for testing!
   }
 }

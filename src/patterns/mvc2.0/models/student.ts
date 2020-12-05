@@ -1,4 +1,4 @@
-import { Admin } from "./admin"
+import { Admin, loadAdmin } from "./admin"
 import { AdminMediator } from "./mediator"
 import { Person } from "./Person"
 
@@ -34,8 +34,9 @@ const loadStudents = () => [
 
 const registerAllStudents = (): void => {
   for (let student of loadStudents()) {
-    adminMediator.registerStudent(student)
+    adminMediator.register(student)
   }
+  adminMediator.register(loadAdmin())
 }
 
 export { Student, loadStudents, adminMediator, registerAllStudents }

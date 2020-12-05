@@ -1,27 +1,28 @@
 import { Admin, loadAdmin } from "./admin"
-import { Course } from "./course"
 import { Student } from "./student"
 
 class AdminMediator {
-  students: Record<string, Student>
+  collection: Record<string, Student | Admin>
   admin: Admin
   constructor() {
-    this.students = {}
+    this.collection = {}
     this.admin = loadAdmin()
   }
-  registerStudent(student: Student) {
-    this.students[student.firstName] = student
-    student.adminMediator = this
+  register(human: Student | Admin) {
+    this.collection[human.firstName] = human
+    human.adminMediator = this
   }
 
   send(message: string, from: Student, to?: Student, admin?: Admin) {
     if (to && admin) {
+      console.log("if")
       to.receive(message, from)
-      admin?.receive(message, from)
+      // admin?.receive(message, from)
     } else {
-      Object.keys(this.students).forEach(key => {
-        if (this.students[key] !== from) {
-          this.students[key].receive(message, from)
+      console.log("else")
+      Object.keys(this.collection).forEach(key => {
+        if (this.collection[key] !== from) {
+          this.collection[key].receive(message, from)
         }
       })
     }

@@ -1,5 +1,4 @@
 import { TeacherController } from "./teacher"
-import { CourseController } from "./course"
 import { StudentController } from "./student"
 import { AdminController } from "./admin"
 

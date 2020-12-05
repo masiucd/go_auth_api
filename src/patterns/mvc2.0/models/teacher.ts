@@ -1,5 +1,5 @@
 import { Person } from "./Person"
-import { Subject, TeacherStudentConstruct } from "../types"
+import { DisplayInfo, Subject, TeacherStudentConstruct } from "../types"
 import { nanoid } from "nanoid"
 
 export class Teacher extends Person implements TeacherStudentConstruct {
@@ -9,12 +9,16 @@ export class Teacher extends Person implements TeacherStudentConstruct {
     this.subjects = []
   }
 
-  displayInfo() {
+  displayInfo(): DisplayInfo {
     return {
       name: `${this.firstName}-${this.lastName}`,
       email: this.email,
       age: `${this.age}`,
     }
+  }
+
+  set addSubject(subject: Subject) {
+    this.subjects.push(subject)
   }
 }
 

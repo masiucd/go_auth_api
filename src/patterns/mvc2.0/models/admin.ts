@@ -1,17 +1,20 @@
-import { Course } from "./course"
+import { AdminMediator } from "./mediator"
 import { Student } from "./student"
-
 class Admin {
   private static instance: Admin
   id: number
-  name: string
+  firstName: string
   slug: string
   isAdmin: boolean
+  private messageBox: string[]
+  adminMediator: null | AdminMediator
   constructor() {
-    this.id = 1
-    this.name = "Alfred"
+    this.id = 99
+    this.firstName = "Alfred"
     this.slug = "I am the boss 💰!!!"
     this.isAdmin = true
+    this.messageBox = []
+    this.adminMediator = null
   }
   static getInstance() {
     if (!Admin.instance) {
@@ -22,7 +25,17 @@ class Admin {
   receive(message: string, from: Student): string {
     const studentRegistredForCourseMessage = `Student ${from.firstName} ${message}`
     console.log(studentRegistredForCourseMessage)
+    this.messageBox.push(message)
     return studentRegistredForCourseMessage
+  }
+
+  get messages(): string {
+    if (this.messageBox.length === 0) return "message box empty!"
+    let str = ``
+    for (const m of this.messageBox) {
+      str += ` --- ${m} ---`
+    }
+    return str
   }
 }
 
