@@ -1,5 +1,5 @@
-import { Admin, loadAdmin } from "./admin"
-import { AdminMediator } from "./mediator"
+import { Admin } from "./admin"
+import { AdminMediator, init } from "./mediator"
 import { Person } from "./Person"
 
 class Student extends Person {
@@ -25,8 +25,6 @@ class Student extends Person {
   }
 }
 
-const adminMediator = new AdminMediator()
-
 const loadStudents = () => [
   new Student(1, "Frank", "Mellberg", "frank@io.com", 21),
   new Student(2, "Rio", "Ferdinand", "rio@io.com", 25),
@@ -36,9 +34,8 @@ const loadStudents = () => [
 
 const registerAllStudents = (): void => {
   for (let student of loadStudents()) {
-    adminMediator.register(student)
+    init().loadMediator().register(student)
   }
-  adminMediator.register(loadAdmin())
 }
 
-export { Student, loadStudents, adminMediator, registerAllStudents }
+export { Student, loadStudents, registerAllStudents }

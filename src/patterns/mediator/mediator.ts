@@ -5,12 +5,14 @@
 // class Mediator {
 //   messageBox: MessageBox[]
 //   members: Person[] | Admin[]
+//   members: Student[] | Admin[]
 //   constructor() {
 //     this.messageBox = []
 //     this.members = []
 //   }
 
 //   register(member: Person | Admin) {
+//     // @ts-ignore
 //     this.members.push(member)
 //     member.mediator = this
 //   }

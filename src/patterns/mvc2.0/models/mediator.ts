@@ -1,25 +1,39 @@
-import { Admin, loadAdmin } from "./admin"
+import { Admin } from "./admin"
 import { Student } from "./student"
-
+interface MessageBox {
+  message: string
+  from: Student | Admin
+}
 class AdminMediator {
-  collection: Record<string, Student | Admin>
-  admin: Admin
-  messageBox: string[]
+  messageBox: MessageBox[]
+  members: Student[] & Admin[]
   constructor() {
-    this.collection = {}
-    this.admin = loadAdmin()
     this.messageBox = []
+    this.members = []
   }
-  register(human: Student | Admin) {
-    this.collection[human.firstName] = human
-    human.adminMediator = this
+  register(member: Student | Admin) {
+    // @ts-ignore
+    this.members.push(member)
+    member.adminMediator = this
+  }
+
+  get getMessageBox(): MessageBox[] {
+    return this.messageBox
   }
 
   send(message: string, from: Student | Admin) {
     console.log("message", message)
     console.log("from", from)
-    this.messageBox.push(message)
+    const obj: MessageBox = { message, from }
+    this.messageBox.push(obj)
   }
 }
 
-export { AdminMediator }
+function init() {
+  const loadMediator = () => new AdminMediator()
+  return {
+    loadMediator,
+  }
+}
+
+export { AdminMediator, init }

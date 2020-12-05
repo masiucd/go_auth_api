@@ -1,4 +1,4 @@
-import { Admin, loadAdmin } from "../models/admin"
+import { Admin, init } from "../models/admin"
 import { Student } from "../models/student"
 import { Teacher } from "../models/teacher"
 import { ListView } from "./list-view"
@@ -33,7 +33,7 @@ export class ModalView<T> {
       "student",
     )
     this.confirmationText = ""
-    this.admin = loadAdmin()
+    this.admin = init().admin
   }
 
   updateText(text: string) {
@@ -73,5 +73,6 @@ export class ModalView<T> {
   }
   updateHtml() {
     this.render()
+    init()
   }
 }

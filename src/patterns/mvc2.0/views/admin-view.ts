@@ -1,15 +1,15 @@
-import { Admin, loadAdmin } from "../models/admin"
+import { Admin, init } from "../models/admin"
 
 export class AdminView {
   parentElement: HTMLDivElement
   admin: Admin
   constructor(parentElement: HTMLDivElement) {
     this.parentElement = parentElement
-    this.admin = loadAdmin()
+    this.admin = init().admin
   }
 
   render(): void {
-    console.log("admin", this.admin, this.parentElement)
+    // console.log("admin", this.admin, this.parentElement)
     const html = `
       <div class="admin-wrapper wrapper-${this.admin.firstName}">
         <button id="admin-profile-btn" class="button">Admin Profile</button>
@@ -26,7 +26,6 @@ export class AdminView {
     const adminContent = document.querySelector(".admin-content") as HTMLDivElement
     document.getElementById("admin-profile-btn")?.addEventListener("click", () => {
       adminContent.classList.toggle("show-admin-content")
-      console.log(this.admin.messages)
     })
   }
 }

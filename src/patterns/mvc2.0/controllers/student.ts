@@ -1,4 +1,4 @@
-import { loadStudents, Student, registerAllStudents, adminMediator } from "../models/student"
+import { loadStudents, Student, registerAllStudents } from "../models/student"
 import { ListView } from "../views/list-view"
 import { ModalView as CoursesModalView } from "../views/modal-view"
 import { loadCourses } from "../models/course"
@@ -43,6 +43,5 @@ export class StudentController {
     this.handleClickStudent()
     this.handleShowProfile()
     registerAllStudents()
-    console.log("adminMediator", adminMediator) //!for testing!
   }
 }

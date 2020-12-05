@@ -1,6 +1,7 @@
 import { TeacherController } from "./teacher"
 import { StudentController } from "./student"
 import { AdminController } from "./admin"
+import { init } from "../models/mediator"
 
 export class App {
   teacher: TeacherController
@@ -16,5 +17,6 @@ export class App {
     this.teacher.init()
     this.admin.init()
     this.students.init()
+    console.log(init().loadMediator())
   }
 }
