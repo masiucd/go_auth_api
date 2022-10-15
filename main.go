@@ -1,9 +1,8 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
-	_ "github.com/mattn/go-sqlite3"
+	"go_auth/connect"
 )
 
 type User struct {
@@ -12,20 +11,10 @@ type User struct {
 	lastname  string
 }
 
-var DB *sql.DB
-
-func connectDb() {
-	db, err := sql.Open("sqlite3", "./data.db")
-	if err != nil {
-		panic(err.Error())
-	}
-
-	DB = db
-
-}
-
 func main() {
-	connectDb()
+
+	connect.ConnectDb()
+	DB := connect.DB
 	defer DB.Close()
 	statement, _ := DB.Prepare("CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)")
 	statement.Exec()
