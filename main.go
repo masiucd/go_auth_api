@@ -14,7 +14,7 @@ type User struct {
 
 func main() {
 
-	db, _ := sql.Open("sqlite3", "./nraboy.db")
+	db, _ := sql.Open("sqlite3", "./data.db")
 	statement, _ := db.Prepare("CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)")
 	statement.Exec()
 	statement, _ = db.Prepare("INSERT INTO people (firstname, lastname) VALUES (?, ?)")
