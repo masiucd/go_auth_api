@@ -12,15 +12,27 @@ type User struct {
 	lastname  string
 }
 
-func main() {
+var DB *sql.DB
 
-	db, _ := sql.Open("sqlite3", "./data.db")
-	statement, _ := db.Prepare("CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)")
+func connectDb() {
+	db, err := sql.Open("sqlite3", "./data.db")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	DB = db
+
+}
+
+func main() {
+	connectDb()
+	defer DB.Close()
+	statement, _ := DB.Prepare("CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)")
 	statement.Exec()
-	statement, _ = db.Prepare("INSERT INTO people (firstname, lastname) VALUES (?, ?)")
+	statement, _ = DB.Prepare("INSERT INTO people (firstname, lastname) VALUES (?, ?)")
 	statement.Exec("Nic", "Raboy")
 
-	rows, _ := db.Query("SELECT id, firstname, lastname FROM people")
+	rows, _ := DB.Query("SELECT id, firstname, lastname FROM people")
 
 	var users []User
 	for rows.Next() {
@@ -34,9 +46,6 @@ func main() {
 
 	fmt.Println("Users:", users[0])
 
-	statement, _ = db.Prepare("DROP TABLE people")
+	statement, _ = DB.Prepare("DROP TABLE people")
 	statement.Exec()
-
-	defer db.Close()
-
 }
